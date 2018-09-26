@@ -77,3 +77,4 @@ colorscheme monokai
 syntax on
 set termguicolors
 set fillchars+=vert:│
+set nobackup
