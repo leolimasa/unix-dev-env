@@ -1,6 +1,8 @@
 "  VIM Configuration file
 "
 "  Needs Plug: https://github.com/junegunn/vim-plug
+"  Also needs to compile YouCompleteMe support after installing plugins by
+"  running install.py in ~/.vim/pluggged/youcompleteme
 "
 "  Source it from ~/.vimrc by doing:
 " 
@@ -68,6 +70,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
@@ -79,4 +82,4 @@ syntax on
 set termguicolors
 set fillchars+=vert:│
 set nobackup
-
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
