@@ -72,9 +72,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " Custom parameters 
+set nocompatible
 let g:tsuquyomi_completion_detail = 1
 colorscheme monokai
 syntax on
 set termguicolors
 set fillchars+=vert:│
 set nobackup
+
