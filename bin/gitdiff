@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Outputs the diff of two Git repositories
+# Example:
+#
+# gitdiff ssh@something.com/repo master ssh@something.com/repo somebranch 
+#
+# The first path is the "base"; the second are the "changes"
+
+mkdir base
+mkdir changes 
+
+cd base
+git clone $1
+git checkout $2
+
+cd ../changes
+git clone $3
+git checkout $4
+
+diff -bur base/ changes/
