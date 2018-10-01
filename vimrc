@@ -71,6 +71,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'valloric/youcompleteme'
+Plug 'klen/python-mode'
 
 call plug#end()
 
@@ -82,5 +83,6 @@ syntax on
 set termguicolors
 set fillchars+=vert:│
 set nobackup
+set nonumber
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 set incsearch
