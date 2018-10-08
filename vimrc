@@ -71,7 +71,10 @@ Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'valloric/youcompleteme'
-Plug 'klen/python-mode'
+Plug 'chiel92/vim-autoformat'
+"Plug 'davidhalter/jedi-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
 
 call plug#end()
 
@@ -86,3 +89,4 @@ set nobackup
 set nonumber
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 set incsearch
+let g:syntastic_python_checkers = ['pylint', 'mypy']

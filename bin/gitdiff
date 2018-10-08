@@ -10,12 +10,14 @@
 mkdir base
 mkdir changes 
 
-cd base
-git clone $1
+git clone $1 base
+cd base/
 git checkout $2
 
-cd ../changes
-git clone $3
+cd ..
+git clone $3 changes
+cd changes/
 git checkout $4
 
-diff -bur base/ changes/
+cd ..
+diff -bur --exclude=.git base/ changes/ > changes.diff
