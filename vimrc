@@ -91,3 +91,6 @@ autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()
 set incsearch
 let g:syntastic_python_checkers = ['pylint', 'mypy']
 autocmd BufEnter * silent! lcd %:p:h " automatically change the current directory to the opened buffer
+set nobackup       "no backup files
+set nowritebackup  "only in case you don't want a backup file while editing
+set noswapfile     "no swap files
