@@ -90,3 +90,4 @@ set nonumber
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 set incsearch
 let g:syntastic_python_checkers = ['pylint', 'mypy']
+autocmd BufEnter * silent! lcd %:p:h " automatically change the current directory to the opened buffer
