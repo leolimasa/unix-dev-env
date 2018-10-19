@@ -5,3 +5,4 @@
 # Correct colors
 export TERM=xterm-256color
 export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
