@@ -40,6 +40,7 @@ def setup_vim(home: str):
 
 def install(repo_dir: str, home: str):
     append_to_file(path.join(home, ".bash_profile"), bash_lines(repo_dir))
+    append_to_file(path.join(home, ".bashrc"), bash_lines(repo_dir))
     append_to_file(path.join(home, ".tmux.conf"), tmux_lines(repo_dir))
     append_to_file(path.join(home, ".vimrc"), vimrc_lines(repo_dir))
     setup_vim(home)
