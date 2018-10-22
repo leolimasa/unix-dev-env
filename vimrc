@@ -75,13 +75,14 @@ Plug 'chiel92/vim-autoformat'
 "Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
+Plug 'kaicataldo/material.vim'
 
 call plug#end()
 
 " Custom parameters 
 set nocompatible
 let g:tsuquyomi_completion_detail = 1
-colorscheme monokai
+colorscheme material
 syntax on
 set termguicolors
 set fillchars+=vert:│
