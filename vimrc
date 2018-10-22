@@ -86,7 +86,6 @@ syntax on
 set termguicolors
 set fillchars+=vert:│
 set nobackup
-set nonumber
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 set incsearch
 let g:syntastic_python_checkers = ['pylint', 'mypy']
@@ -95,3 +94,5 @@ set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
 set noswapfile     "no swap files
 set noundofile
+set number
+set relativenumber
