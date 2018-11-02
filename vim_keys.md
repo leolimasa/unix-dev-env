@@ -48,6 +48,10 @@
     * Ctrl wv
 * Quit window
     * Ctrl wq
+* Max out window height
+    * Ctrl w _
+* Max out winkow width
+    * Ctrl w |
 * All about windows: https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 * QuickFix window
     :copen " Open the quickfix window

@@ -76,6 +76,7 @@ Plug 'chiel92/vim-autoformat'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'kaicataldo/material.vim'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
