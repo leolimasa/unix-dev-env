@@ -38,14 +38,20 @@ def setup_vim(home: str):
     install_py = path.join(home, ".vim", "plugged", "youcompleteme", "install.py")
     os.system(f'{install_py} --clang-completer --cs-completer --go-completer --java-completer')
 
+
 def install(repo_dir: str, home: str):
+    os.system("brew install vim --override-system-vi --with-client-server")
     append_to_file(path.join(home, ".bash_profile"), bash_lines(repo_dir))
     append_to_file(path.join(home, ".bashrc"), bash_lines(repo_dir))
     append_to_file(path.join(home, ".tmux.conf"), tmux_lines(repo_dir))
     append_to_file(path.join(home, ".vimrc"), vimrc_lines(repo_dir))
     setup_vim(home)
 
+def home():
+    return str(pathlib.Path.home())
+
+def repo_dir():
+    return path.dirname(path.abspath(__file__))
+
 if __name__ == "__main__":
-    home = str(pathlib.Path.home())
-    repo_dir = path.dirname(path.abspath(__file__))
-    install(repo_dir, home)
+    install(repo_dir(), home())
