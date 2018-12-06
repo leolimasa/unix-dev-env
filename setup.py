@@ -38,6 +38,10 @@ def setup_vim(home: str):
     install_py = path.join(home, ".vim", "plugged", "youcompleteme", "install.py")
     os.system(f'{install_py} --clang-completer --cs-completer --go-completer --java-completer')
 
+def vim_as_git_diff():
+    os.system("git config merge.tool vimdiff")
+    os.system("git config merge.conflictstyle diff3")
+    os.system("git config mergetool.prompt false")
 
 def install(repo_dir: str, home: str):
     os.system("brew install vim --override-system-vi --with-client-server")
@@ -46,6 +50,7 @@ def install(repo_dir: str, home: str):
     append_to_file(path.join(home, ".tmux.conf"), tmux_lines(repo_dir))
     append_to_file(path.join(home, ".vimrc"), vimrc_lines(repo_dir))
     setup_vim(home)
+    vim_as_git_diff()
 
 def home():
     return str(pathlib.Path.home())
