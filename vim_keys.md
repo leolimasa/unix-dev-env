@@ -1,5 +1,7 @@
 * Switch terminal to normal mode
     * ctr-w N
+* Execute VIM command from terminal
+    * ctrl-w :
 * Swap windows
     * Ctr-w r
 * Format
@@ -80,9 +82,12 @@
     * :b
 * Paste stuff in vim's command line
     * Ctrl r "
+    * Ctrl r + (for system clipboard)
 * New directory
     * d
 * Remove / delete buffer entirely
     * bd
 * Move window to tab
     * Ctrl w T
+* Show buffer number of current windo
+    * :echo bufnr('%')
