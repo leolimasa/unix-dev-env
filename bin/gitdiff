@@ -21,3 +21,4 @@ git checkout $4
 
 cd ..
 diff -bur --exclude=.git base/ changes/ > changes.diff
+diff -qr --exclude=.git base/ changes/ > files.diff
