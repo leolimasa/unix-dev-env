@@ -77,6 +77,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'kaicataldo/material.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
