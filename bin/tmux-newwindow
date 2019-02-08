@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Create layout
+tmux new-window -n $(basename $1)
+tmux split-window -v
+tmux split-window -h
+
+# CD into directories
+tmux select-pane -t 0
+tmux send-keys "cd $1" C-m
+tmux send-keys "vim" C-m
+tmux send-keys -t 1 "cd $1" C-m
+tmux send-keys -t 2 "cd $1" C-m
+
+# Resize console pane
+tmux select-pane -t 1
+tmux resize-pane -D 10
+
+# Setup vim
+tmux select-pane -t 0
+sleep 1
+tmux send-keys C-w v
+
+
