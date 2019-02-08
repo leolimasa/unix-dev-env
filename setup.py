@@ -2,6 +2,7 @@
 from os import path
 import pathlib
 import os
+import sys
 
 def bash_lines(dir: str) -> str:
     return '\n'.join([
@@ -26,7 +27,9 @@ def append_to_file(path: str, contents: str):
     f.write(contents)
     f.close()
 
-def setup_vim(home: str):
+def setup_vim(repo_dir: str, home: str):
+    append_to_file(path.join(home, ".vimrc"), vimrc_lines(repo_dir))
+
     # Download plug
     plug_vim = path.join(home, ".vim", "autoload", "plug.vim")
     os.system(f"curl -fLo {plug_vim} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
@@ -48,8 +51,7 @@ def install(repo_dir: str, home: str):
     append_to_file(path.join(home, ".bash_profile"), bash_lines(repo_dir))
     append_to_file(path.join(home, ".bashrc"), bash_lines(repo_dir))
     append_to_file(path.join(home, ".tmux.conf"), tmux_lines(repo_dir))
-    append_to_file(path.join(home, ".vimrc"), vimrc_lines(repo_dir))
-    setup_vim(home)
+    setup_vim(repo_dir, home)
     vim_as_git_diff()
 
 def home():
@@ -59,4 +61,9 @@ def repo_dir():
     return path.dirname(path.abspath(__file__))
 
 if __name__ == "__main__":
-    install(repo_dir(), home())
+    if len(sys.argv) > 0 and sys.argv[1] == "vim":
+        setup_vim(repo_dir(), home())
+    else:
+        install(repo_dir(), home())
+
+
