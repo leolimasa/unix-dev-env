@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+import fileinput
+import re
+
+def number_of_leading_spaces(line):
+    return len(line) - len(line.lstrip(' ')) + 1
+
+def without_leading_numbers(line):
+    m = re.search('(\s*[0-9]+\.*\s*)*(.*)', line)
+    return m.group(2)
+
+def prepend_number(line, number, ident):
+    return ' ' * ident + number.__str__() + '. ' + without_leading_numbers(line) 
+
+def run():
+    number_stack = []
+    previous_leading_spaces = 0
+    level = 0
+    for line in fileinput.input():
+        spaces = number_of_leading_spaces(line)
+        if spaces > previous_leading_spaces:
+            level = level + 1
+        elif spaces < previous_leading_spaces:
+            level = level - 1
+        if len(number_stack) < level:
+            number_stack.append(1)
+        if len(number_stack) > level:
+            number_stack.pop()
+        i = level - 1
+        print(prepend_number(line, number_stack[i], level))
+        number_stack[i] = number_stack[i] + 1
+        previous_leading_spaces = spaces
+
+run()
+
