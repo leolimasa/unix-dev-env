@@ -15,20 +15,19 @@ def prepend_number(line, number, ident):
 def run():
     number_stack = []
     previous_leading_spaces = 0
-    level = 0
+    level = -1
     for line in fileinput.input():
         spaces = number_of_leading_spaces(line)
         if spaces > previous_leading_spaces:
             level = level + 1
         elif spaces < previous_leading_spaces:
             level = level - 1
-        if len(number_stack) < level:
+        if len(number_stack) < level + 1:
             number_stack.append(1)
-        if len(number_stack) > level:
+        if len(number_stack) > level + 1:
             number_stack.pop()
-        i = level - 1
-        print(prepend_number(line, number_stack[i], level))
-        number_stack[i] = number_stack[i] + 1
+        print(prepend_number(line, number_stack[level], level * 2))
+        number_stack[level] = number_stack[level] + 1
         previous_leading_spaces = spaces
 
 run()
