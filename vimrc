@@ -64,32 +64,48 @@ endif
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'leafgarland/typescript-vim'
-Plug 'quramy/tsuquyomi'
+Plug 'tpope/vim-sleuth'               " Makes sure tabs / spaces are consistent
+Plug 'tpope/vim-fugitive'             " For Git
+Plug 'chiel92/vim-autoformat'         " Autoformatter for several languages
+Plug 'scrooloose/syntastic'           " Syntax checker. Displays errors
+Plug 'christoomey/vim-tmux-navigator' " ctrl+hjkl tmux integration
+Plug 'ctrlpvim/ctrlp.vim'             " Find files fast
+
+" Eye candy
 Plug 'crusoexia/vim-monokai'
-Plug 'tpope/vim-sleuth'
-Plug 'easymotion/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'valloric/youcompleteme'
-Plug 'chiel92/vim-autoformat'
-"Plug 'davidhalter/jedi-vim'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
 Plug 'kaicataldo/material.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'christoomey/vim-tmux-navigator'
+
+" Syntax highlighting
+Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+
+" Autocompletion
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'junegunn/fzf'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp' " needed for deoplete
+Plug 'roxma/vim-hug-neovim-rpc' " needed for deoplete
+
+" Stuff that i've used before and might use again
+"Plug 'easymotion/vim-easymotion'
+"Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
 " Custom parameters 
+set hidden
 set nocompatible
-let g:tsuquyomi_completion_detail = 1
 colorscheme material
 syntax on
 set termguicolors
 set fillchars+=vert:│
 set nobackup
-autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+"let g:tsuquyomi_completion_detail = 1
+"autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 set incsearch
 let g:syntastic_python_checkers = ['pylint', 'mypy']
 autocmd BufEnter * silent! lcd %:p:h " automatically change the current directory to the opened buffer
@@ -99,3 +115,15 @@ set noswapfile     "no swap files
 set noundofile
 set number
 set relativenumber
+
+" Plugin settings
+let g:deoplete#enable_at_startup = 1
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+  \ 'typescript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log']
+  \ }
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
