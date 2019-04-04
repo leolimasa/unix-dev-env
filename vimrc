@@ -122,7 +122,9 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
   \ 'typescript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
   \ 'javascript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
-  \ 'python': [$LANGSERVER_PY]
+  \ 'python': [$LANGSERVER_PY],
+  \ 'css': [$LANGSERVER_CSS, '--stdio'],
+  \ 'sh': [$LANGSERVER_BASH, 'start']
   \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
