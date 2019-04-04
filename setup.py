@@ -25,7 +25,9 @@ def lang_go():
 
 
 def lang_css():
-    pass
+    os.system("npm install --global vscode-css-languageserver-bin")
+    server = subprocess.check_output(['which', 'css-languageserver']).decode('UTF-8')
+    return {'LANGSERVER_CSS': server}
 
 
 def lang_bash():
@@ -60,7 +62,7 @@ def lang_rust():
     pass
 
 
-langs = {'typescript': lang_typescript, 'python': lang_python}
+langs = {'typescript': lang_typescript, 'python': lang_python, 'css': lang_css}
 
 DEVENV_START = '# Unix dev env START'
 DEVENV_END = '# Unix dev env END'
@@ -179,7 +181,7 @@ def repo_dir():
 
 
 def retrieve_langs():
-    return ["typescript", "python"]
+    return ["typescript", "python", "css"]
 
 
 if __name__ == "__main__":
