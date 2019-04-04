@@ -120,9 +120,12 @@ set relativenumber
 let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
-  \ 'typescript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log']
+  \ 'typescript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
+  \ 'javascript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
+  \ 'python': [$LANGSERVER_PY]
   \ }
 
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>

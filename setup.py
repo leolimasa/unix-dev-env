@@ -6,24 +6,65 @@ import sys
 import subprocess
 import re
 
+
 def lang_typescript():
     os.system('npm install -g javascript-typescript-langserver')
-    path = subprocess.check_output(['which','javascript-typescript-stdio']).decode('UTF-8')
-    return {'LANGSERVER_TS': path} 
+    server = subprocess.check_output(
+        ['which', 'javascript-typescript-stdio']).decode('UTF-8')
+    return {'LANGSERVER_TS': server}
+
+
+def lang_python():
+    os.system("pip3 install 'python-language-server[all]")
+    server = subprocess.check_output(['which', 'pyls']).decode('UTF-8')
+    return {'LANGSERVER_PY': server}
+
 
 def lang_go():
     pass
 
-def lang_python():
+
+def lang_css():
     pass
+
+
+def lang_bash():
+    pass
+
+
+def lang_json():
+    pass
+
+
+def lang_yaml():
+    pass
+
+
+def lang_html():
+    pass
+
+
+def lang_csharp():
+    pass
+
+
+def lang_dockerfile():
+    pass
+
+
+def lang_xml():
+    pass
+
 
 def lang_rust():
     pass
 
-langs = {'typescript': lang_typescript}
+
+langs = {'typescript': lang_typescript, 'python': lang_python}
 
 DEVENV_START = '# Unix dev env START'
 DEVENV_END = '# Unix dev env END'
+
 
 def bash_lines(dir: str, envvars: dict) -> str:
     env = '\n'.join([f'export {k}={envvars[k]}' for k in envvars])
@@ -33,23 +74,26 @@ def bash_lines(dir: str, envvars: dict) -> str:
         f'source {dir}/bashrc',
         env,
         DEVENV_END
-        ])
+    ])
+
 
 def tmux_lines(dir: str) -> str:
     return '\n'.join([
         f'source-file {path.join(dir, "tmux.conf")}'
-        ])
+    ])
+
 
 def vimrc_lines(dir: str) -> str:
     return '\n'.join([
         f'so {path.join(dir, "vimrc")}'
-        ])
+    ])
 
 
 def append_to_file(path: str, contents: str):
     f = open(path, "a" if os.path.exists(path) else "w+")
     f.write(contents)
     f.close()
+
 
 def remove_devenv_section_from_file(path: str):
     # Create regular expression pattern
@@ -68,6 +112,7 @@ def remove_devenv_section_from_file(path: str):
     f.write(data_chopped)
     f.close()
 
+
 def replace_in_file(path: str, contents: str):
     remove_devenv_section_from_file(path)
     append_to_file(path, contents)
@@ -81,7 +126,8 @@ def setup_vim(repo_dir: str, home: str):
 
     # Download plug
     plug_vim = path.join(home, ".vim", "autoload", "plug.vim")
-    os.system(f"curl -fLo {plug_vim} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
+    os.system(
+        f"curl -fLo {plug_vim} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
 
     # Install plugins
     os.system("vim +PlugInstall +qall")
@@ -90,24 +136,30 @@ def setup_vim(repo_dir: str, home: str):
     #install_py = path.join(home, ".vim", "plugged", "youcompleteme", "install.py")
     #os.system(f'{install_py} --clang-completer --cs-completer --go-completer --java-completer')
 
+
 def setup_bashrc(repo_dir: str, home: str, env: dict):
     print(bash_lines(repo_dir, env))
-    replace_in_file(path.join(home, ".bash_profile"), bash_lines(repo_dir, env))
+    replace_in_file(path.join(home, ".bash_profile"),
+                    bash_lines(repo_dir, env))
     replace_in_file(path.join(home, ".bashrc"), bash_lines(repo_dir, env))
+
 
 def setup_env(languages):
     return install_langs(languages)
+
 
 def vim_as_git_diff():
     os.system("git config merge.tool vimdiff")
     os.system("git config merge.conflictstyle diff3")
     os.system("git config mergetool.prompt false")
 
+
 def install_langs(languages):
     result = {}
     for lang in languages:
         result.update(langs[lang]())
     return result
+
 
 def install(languages, repo_dir: str, home: str):
     os.system("brew install vim --override-system-vi --with-client-server")
@@ -117,14 +169,18 @@ def install(languages, repo_dir: str, home: str):
     setup_vim(repo_dir, home)
     vim_as_git_diff()
 
+
 def home():
     return str(pathlib.Path.home())
+
 
 def repo_dir():
     return path.dirname(path.abspath(__file__))
 
+
 def retrieve_langs():
-    return ["typescript"]
+    return ["typescript", "python"]
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 0:
@@ -133,6 +189,4 @@ if __name__ == "__main__":
         elif sys.argv[1] == "bashrc":
             setup_bashrc(repo_dir(), home(), setup_env(retrieve_langs()))
     else:
-        install(enabled_langs, repo_dir(), home())
-
-
+        install(retrieve_langs, repo_dir(), home())
