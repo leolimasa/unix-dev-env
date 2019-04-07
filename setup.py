@@ -37,6 +37,12 @@ def lang_bash():
         ['which', 'bash-language-server']).decode('UTF-8')
     return {'LANGSERVER_BASH': server}
 
+def lang_rust():
+    os.system("rustup update")
+    os.system("rustup component add rls rust-analysis rust-src")
+    server = subprocess.check_output(
+        ['rustup']).decode('UTF-8')
+    return {'LANGSERVER_RUST': server}
 
 def lang_json():
     pass
@@ -62,12 +68,10 @@ def lang_xml():
     pass
 
 
-def lang_rust():
-    pass
 
 
 langs = {'typescript': lang_typescript,
-         'python': lang_python, 'css': lang_css, 'bash': lang_bash}
+        'python': lang_python, 'css': lang_css, 'bash': lang_bash, 'rust': lang_rust}
 
 DEVENV_START = '# Unix dev env START'
 DEVENV_END = '# Unix dev env END'
@@ -186,7 +190,7 @@ def repo_dir():
 
 
 def retrieve_langs():
-    return ["typescript", "python", "css", "bash"]
+    return ["typescript", "python", "css", "bash", "rust"]
 
 
 if __name__ == "__main__":
