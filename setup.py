@@ -41,7 +41,7 @@ def lang_rust():
     os.system("rustup update")
     os.system("rustup component add rls rust-analysis rust-src")
     server = subprocess.check_output(
-        ['rustup']).decode('UTF-8')
+        ['which', 'rustup']).decode('UTF-8')
     return {'LANGSERVER_RUST': server}
 
 def lang_json():
