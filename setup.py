@@ -27,13 +27,23 @@ def lang_go():
 
 def lang_css():
     os.system("npm install --global vscode-css-languageserver-bin")
-    server = subprocess.check_output(['which', 'css-languageserver']).decode('UTF-8')
+    server = subprocess.check_output(
+        ['which', 'css-languageserver']).decode('UTF-8')
     return {'LANGSERVER_CSS': server}
 
 
 def lang_bash():
-    pass
+    os.system("npm i -g bash-language-server")
+    server = subprocess.check_output(
+        ['which', 'bash-language-server']).decode('UTF-8')
+    return {'LANGSERVER_BASH': server}
 
+def lang_rust():
+    os.system("rustup update")
+    os.system("rustup component add rls rust-analysis rust-src")
+    server = subprocess.check_output(
+        ['which', 'rustup']).decode('UTF-8')
+    return {'LANGSERVER_RUST': server}
 
 def lang_json():
     pass
@@ -59,11 +69,10 @@ def lang_xml():
     pass
 
 
-def lang_rust():
-    pass
 
 
-langs = {'typescript': lang_typescript, 'python': lang_python, 'css': lang_css}
+langs = {'typescript': lang_typescript,
+        'python': lang_python, 'css': lang_css, 'bash': lang_bash, 'rust': lang_rust}
 
 DEVENV_START = '# Unix dev env START'
 DEVENV_END = '# Unix dev env END'
@@ -182,7 +191,7 @@ def repo_dir():
 
 
 def retrieve_langs():
-    return ["typescript", "python", "css"]
+    return ["typescript", "python", "css", "bash", "rust"]
 
 
 if __name__ == "__main__":
