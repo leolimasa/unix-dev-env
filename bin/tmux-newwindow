@@ -2,6 +2,7 @@
 
 # Create layout
 tmux new-window -n $(basename $1)
+tmux setenv PR $(cd $1> /dev/null && pwd -P)
 tmux split-window -v
 tmux split-window -h
 
