@@ -123,6 +123,7 @@ let g:LanguageClient_serverCommands = {
   \ 'typescript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
   \ 'javascript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
   \ 'python': [$LANGSERVER_PY],
+  \ 'rust': [$LANGSERVER_RUST, 'run', 'stable', 'rls'],
   \ 'css': [$LANGSERVER_CSS, '--stdio'],
   \ 'sh': [$LANGSERVER_BASH, 'start']
   \ }
