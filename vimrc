@@ -77,7 +77,7 @@ Plug 'kaicataldo/material.vim'
 Plug 'vim-airline/vim-airline'
 
 " Syntax highlighting
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
 Plug 'leafgarland/typescript-vim'
 
 " Autocompletion
@@ -122,8 +122,8 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
   \ 'typescript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
   \ 'javascript': [$LANGSERVER_TS, '--logfile', '/tmp/tsserver.log'],
-  \ 'python': [$LANGSERVER_PY],
   \ 'rust': [$LANGSERVER_RUST, 'run', 'stable', 'rls'],
+  \ 'python': [$LANGSERVER_PY],
   \ 'css': [$LANGSERVER_CSS, '--stdio'],
   \ 'sh': [$LANGSERVER_BASH, 'start']
   \ }
