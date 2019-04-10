@@ -20,10 +20,5 @@ cd changes/
 git checkout $4
 
 cd ..
-diff -bur --exclude=.git base/ changes/ > changes.diff
-diff -qr --exclude=.git base/ changes/ > files.diff
-
-# Makes vimcommands file
-sed 's/^Files \(.*\) and \(.*\) differ$/vimdiff \1 \2/' files.diff > vimcommands
-sed -i -e 's/^Only in \(.*\): \(.*\)/vim \1\/\2/' vimcommands
+dirdiff base/ changes/
 

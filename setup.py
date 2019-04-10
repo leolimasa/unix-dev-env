@@ -15,7 +15,8 @@ def lang_typescript():
 
 
 def lang_python():
-    os.system("pip3 install 'python-language-server[all]")
+    os.system("pip3 install 'python-language-server[all]'")
+    os.system("pip3 install pynvim")
     server = subprocess.check_output(['which', 'pyls']).decode('UTF-8')
     return {'LANGSERVER_PY': server}
 
