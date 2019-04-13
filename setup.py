@@ -40,6 +40,7 @@ def lang_bash():
 
 def lang_rust():
     os.system("rustup update")
+    os.system("cargo install cargo-edit")
     os.system("rustup component add rls rust-analysis rust-src")
     server = subprocess.check_output(
         ['which', 'rustup']).decode('UTF-8')
