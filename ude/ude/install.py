@@ -1,4 +1,4 @@
-from typing import List, Callable, Dict
+from typing import List, Callable, Dict, Collection
 from dataclasses import replace
 from functools import reduce
 import os
@@ -28,7 +28,7 @@ def setup_feature(feature: FeatureSetup, env: UdeEnvironment) -> UdeEnvironment:
     return replace(env, features=env.features + [new_feature])
 
 
-def setup_features(feature_list: Dict[str, FeatureSetup], features: List[str], env: UdeEnvironment) -> UdeEnvironment:
+def setup_features(feature_list: Dict[str, FeatureSetup], features: Collection[str], env: UdeEnvironment) -> UdeEnvironment:
     """
     Sets up all features specified in the features argument.
     Setup must be included in feature_list.
@@ -39,7 +39,7 @@ def setup_features(feature_list: Dict[str, FeatureSetup], features: List[str], e
         env)
 
 
-def setup_systems(systems_list: Dict[str, SystemSetup], systems: List[str], env: UdeEnvironment):
+def setup_systems(systems_list: Dict[str, SystemSetup], systems: Collection[str], env: UdeEnvironment) -> None:
     """
     Run the system setup for the specified system in the systems list.
     """
@@ -49,9 +49,9 @@ def setup_systems(systems_list: Dict[str, SystemSetup], systems: List[str], env:
 
 def setup(feature_list: Dict[str, FeatureSetup],
           systems_list: Dict[str, SystemSetup],
-          features: List[str],
-          systems: List[str],
-          env: UdeEnvironment):
+          features: Collection[str],
+          systems: Collection[str],
+          env: UdeEnvironment) -> None:
     """
     Sets up all systems and features specified in the lists.
     """
@@ -63,8 +63,10 @@ def split_and_trim(input: str) -> List[str]:
     splat = input.split(',')
     return [item.strip() for item in splat]
 
-def env_is_set(env: str) -> None:
+
+def env_is_set(env: str) -> bool:
     return os.getenv(env, False) != False
+
 
 def main() -> None:
     home = os.getenv('UDE_USER_HOME', str(pathlib.Path.home()))
@@ -72,10 +74,10 @@ def main() -> None:
         'UDE_CONFIG_DIR', os.path.join(home, '.config', 'ude'))
     if not os.path.exists(ude_config_dir):
         os.makedirs(ude_config_dir)
-    features: List[str] = (split_and_trim(os.getenv('UDE_FEATURES', ''))
-        if env_is_set('UDE_FEATURES') else all_features.keys())
-    systems: List[str] = (split_and_trim(os.getenv('UDE_SYSTEMS', ''))
-        if env_is_set('UDE_SYSTEMS') else all_systems.keys())
+    features: Collection[str] = (split_and_trim(os.getenv('UDE_FEATURES', ''))
+                           if env_is_set('UDE_FEATURES') else all_features.keys())
+    systems: Collection[str] = (split_and_trim(os.getenv('UDE_SYSTEMS', ''))
+                          if env_is_set('UDE_SYSTEMS') else all_systems.keys())
     env = UdeEnvironment(
         home_dir=home,
         ude_config_dir=ude_config_dir,
@@ -86,4 +88,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

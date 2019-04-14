@@ -4,7 +4,7 @@ import os
 from ..model import UdeEnvironment
 from ..fs import write_template, rewrite_file_block, run_cmd, install_package
 
-def setup(env: UdeEnvironment):
+def setup(env: UdeEnvironment) -> None:
     try:
         run_cmd(['which', 'nvim'])
     except:
@@ -27,12 +27,13 @@ def setup(env: UdeEnvironment):
         '+qall'])
     setup_coc(env)
 
-def setup_coc(env: UdeEnvironment):
+def setup_coc(env: UdeEnvironment) -> None:
     write_template('coc-settings.json', env,
             os.path.join(env.home_dir, '.config', 'nvim', 'coc-settings.json'))
     run_cmd([
         'nvim',
         '"+CocInstall coc-json"',
+        '"+CocInstall coc-html"',
         '+qall'])
 
 def install_plug(env: UdeEnvironment):
