@@ -22,12 +22,14 @@ def render_template(file_path: str, env: UdeEnvironment) -> str:
         template = jinja2.Template(template_file.read())
         return template.render(env=env, enabled_features=env.enabled_features())
 
-def write_template(template_file: str, env: UdeEnvironment, dest: Optional[str] = None):
+
+def write_template(template_file: str, env: UdeEnvironment, dest: Optional[str] = None) -> None:
     """
     Opens the template file, renders it with env, and saves it
     in the config dir.
     """
-    final_dest = os.path.join(env.ude_config_dir, template_file) if dest is None else dest
+    final_dest = os.path.join(
+        env.ude_config_dir, template_file) if dest is None else dest
     if not os.path.exists(os.path.dirname(final_dest)):
         os.makedirs(os.path.dirname(final_dest))
     cur_dir = os.path.dirname(os.path.abspath(__file__))
@@ -37,16 +39,17 @@ def write_template(template_file: str, env: UdeEnvironment, dest: Optional[str] 
     write_to_file(final_dest, rendered)
 
 
-def write_to_file(path: str, contents: str):
+def write_to_file(path: str, contents: str) -> None:
     file = open(path, 'w')
     file.write(contents)
     file.close()
 
-def install_package(pkg: str):
+
+def install_package(pkg: str) -> None:
     run_cmd(['brew', 'install', pkg])
 
 
-def append_to_file(path: str, contents: str):
+def append_to_file(path: str, contents: str) -> None:
     """
     Appends a string to the file.
     """
@@ -54,7 +57,8 @@ def append_to_file(path: str, contents: str):
     file.write(contents)
     file.close()
 
-def create_file_if_not_exists(path: str):
+
+def create_file_if_not_exists(path: str) -> None:
     """
     Creates an empty file along with all directories if path
     does not exists.
@@ -67,7 +71,7 @@ def create_file_if_not_exists(path: str):
             file.write("")
 
 
-def rewrite_file_block(block_start: str, block_end: str, path: str, contents: str):
+def rewrite_file_block(block_start: str, block_end: str, path: str, contents: str) -> None:
     """
     Rewrites the text between block_start and block_end with the contents string
     on the specified file.

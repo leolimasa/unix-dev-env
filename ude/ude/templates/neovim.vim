@@ -1,6 +1,7 @@
 call plug#begin()
 Plug 'christoomey/vim-tmux-navigator' " ctrl+hjkl tmux integration
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
+Plug 'tpope/vim-sleuth'
 
 " Eye candy
 Plug 'crusoexia/vim-monokai'
@@ -13,6 +14,7 @@ Plug 'junegunn/fzf.vim'
 
 {% if "typescript" in enabled_features %}
 Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 {% endif %}
 call plug#end()
 
@@ -41,7 +43,7 @@ nnoremap <silent> <leader>b :Buffers<cr>
 "  ---------------
 " Typescript detection
 " au BufNewFile,BufRead *.ts set filetype=typescript
-" au BufNewFile,BufRead *.tsx set filetype=typescript
+"au BufNewFile,BufRead *.tsx set filetype=typescriptreact
 
 " coc airline integration
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
