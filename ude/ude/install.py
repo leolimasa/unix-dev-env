@@ -3,7 +3,7 @@ from dataclasses import replace
 from functools import reduce
 import os
 import pathlib
-from .systems import neovim, tmux
+from .systems import neovim, tmux, bash
 from .features import python, fzf, typescript
 from .model import UdeEnvironment, UdeFeature
 
@@ -18,7 +18,8 @@ all_features: Dict[str, FeatureSetup] = {
 
 all_systems: Dict[str, SystemSetup] = {
     'neovim': neovim.setup,
-    'tmux': tmux.setup
+    'tmux': tmux.setup,
+    'bash': bash.setup
 }
 
 
@@ -37,7 +38,8 @@ def setup_features(feature_list: Dict[str, FeatureSetup], features: Collection[s
     Setup must be included in feature_list.
     """
     return reduce(
-        lambda env, feature: setup_feature(feature_list[feature], feature, env),
+        lambda env, feature: setup_feature(
+            feature_list[feature], feature, env),
         features,
         env)
 
@@ -77,6 +79,11 @@ def env_list(env: str, default: Collection[str]) -> Collection[str]:
             if env_is_set(env) else default)
 
 
+def repo_dir() -> str:
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.abspath(os.path.join(cur_dir, '..', '..'))
+
+
 def main() -> None:
     home = os.getenv('UDE_USER_HOME', str(pathlib.Path.home()))
     ude_config_dir = os.getenv(
@@ -90,6 +97,7 @@ def main() -> None:
     systems = env_list('UDE_SYSTEMS', all_systems.keys())
     env = UdeEnvironment(
         home_dir=home,
+        repo_dir=repo_dir(),
         ude_config_dir=ude_config_dir,
         features=[]
     )

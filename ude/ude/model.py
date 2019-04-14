@@ -11,6 +11,7 @@ class UdeFeature:
 @dataclass
 class UdeEnvironment:
     home_dir: str
+    repo_dir: str
     ude_config_dir: str
     features: List[UdeFeature]
 
