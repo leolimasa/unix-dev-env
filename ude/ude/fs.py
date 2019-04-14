@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 import subprocess
 import os
 import re
@@ -20,26 +20,30 @@ def render_template(file_path: str, env: UdeEnvironment) -> str:
     """
     with open(file_path) as template_file:
         template = jinja2.Template(template_file.read())
-        return template.render(env)
+        return template.render(env=env, enabled_features=env.enabled_features())
 
-def write_template(template_file: str,  env: UdeEnvironment):
+def write_template(template_file: str, env: UdeEnvironment, dest: Optional[str] = None):
     """
     Opens the template file, renders it with env, and saves it
     in the config dir.
     """
+    final_dest = os.path.join(env.ude_config_dir, template_file) if dest is None else dest
+    if not os.path.exists(os.path.dirname(final_dest)):
+        os.makedirs(os.path.dirname(final_dest))
     cur_dir = os.path.dirname(os.path.abspath(__file__))
     rendered = render_template(
         os.path.join(cur_dir, 'templates', template_file),
         env)
-    write_to_file(
-        os.path.join(env.ude_config_dir, template_file),
-        rendered)
+    write_to_file(final_dest, rendered)
 
 
 def write_to_file(path: str, contents: str):
     file = open(path, 'w')
     file.write(contents)
     file.close()
+
+def install_package(pkg: str):
+    run_cmd(['brew', 'install', pkg])
 
 
 def append_to_file(path: str, contents: str):

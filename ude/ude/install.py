@@ -4,14 +4,15 @@ from functools import reduce
 import os
 import pathlib
 from .systems import neovim
-from .features import python
+from .features import python, fzf
 from .model import UdeEnvironment, UdeFeature
 
 FeatureSetup = Callable[[UdeEnvironment], UdeFeature]
 SystemSetup = Callable[[UdeEnvironment], None]
 
 all_features: Dict[str, FeatureSetup] = {
-    'python': python.setup
+    'python': python.setup,
+    'fzf': fzf.setup
 }
 
 all_systems: Dict[str, SystemSetup] = {
@@ -62,18 +63,19 @@ def split_and_trim(input: str) -> List[str]:
     splat = input.split(',')
     return [item.strip() for item in splat]
 
-def env_is_set(env: str):
+def env_is_set(env: str) -> None:
     return os.getenv(env, False) != False
 
-def main():
+def main() -> None:
     home = os.getenv('UDE_USER_HOME', str(pathlib.Path.home()))
     ude_config_dir = os.getenv(
         'UDE_CONFIG_DIR', os.path.join(home, '.config', 'ude'))
-    os.makedirs(ude_config_dir)
-    features = (split_and_trim(os.getenv('UDE_FEATURES', '')) 
-        if env_is_set('UDE_FEATURES') else all_features.values())
-    systems = (split_and_trim(os.getenv('UDE_SYSTEMS', ''))
-        if env_is_set('UDE_SYSTEMS') else all_systems.values())
+    if not os.path.exists(ude_config_dir):
+        os.makedirs(ude_config_dir)
+    features: List[str] = (split_and_trim(os.getenv('UDE_FEATURES', ''))
+        if env_is_set('UDE_FEATURES') else all_features.keys())
+    systems: List[str] = (split_and_trim(os.getenv('UDE_SYSTEMS', ''))
+        if env_is_set('UDE_SYSTEMS') else all_systems.keys())
     env = UdeEnvironment(
         home_dir=home,
         ude_config_dir=ude_config_dir,
