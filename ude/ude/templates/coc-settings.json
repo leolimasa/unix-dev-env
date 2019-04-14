@@ -1,5 +1,7 @@
 {
     "python.jediEnabled": false,
     "python.linting.mypyEnabled": true,
-    "python.linting.mypyArgs": ["--strict"]
+    "python.linting.mypyArgs": ["--strict"],
+    "tsserver.enable": true,
+    "tsserver.log": "verbose"
 }

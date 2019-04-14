@@ -10,6 +10,10 @@ Plug 'vim-airline/vim-airline'
 {% if "fzf" in enabled_features %}Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 {% endif %}
+
+{% if "typescript" in enabled_features %}
+Plug 'leafgarland/typescript-vim'
+{% endif %}
 call plug#end()
 
 colorscheme material
@@ -35,6 +39,9 @@ nnoremap <silent> <leader>b :Buffers<cr>
 " ----------------
 "  COC
 "  ---------------
+" Typescript detection
+" au BufNewFile,BufRead *.ts set filetype=typescript
+" au BufNewFile,BufRead *.tsx set filetype=typescript
 
 " coc airline integration
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'

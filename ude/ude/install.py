@@ -4,7 +4,7 @@ from functools import reduce
 import os
 import pathlib
 from .systems import neovim
-from .features import python, fzf
+from .features import python, fzf, typescript
 from .model import UdeEnvironment, UdeFeature
 
 FeatureSetup = Callable[[UdeEnvironment], UdeFeature]
@@ -12,7 +12,8 @@ SystemSetup = Callable[[UdeEnvironment], None]
 
 all_features: Dict[str, FeatureSetup] = {
     'python': python.setup,
-    'fzf': fzf.setup
+    'fzf': fzf.setup,
+    'typescript': typescript.setup
 }
 
 all_systems: Dict[str, SystemSetup] = {
@@ -75,9 +76,9 @@ def main() -> None:
     if not os.path.exists(ude_config_dir):
         os.makedirs(ude_config_dir)
     features: Collection[str] = (split_and_trim(os.getenv('UDE_FEATURES', ''))
-                           if env_is_set('UDE_FEATURES') else all_features.keys())
+                                 if env_is_set('UDE_FEATURES') else all_features.keys())
     systems: Collection[str] = (split_and_trim(os.getenv('UDE_SYSTEMS', ''))
-                          if env_is_set('UDE_SYSTEMS') else all_systems.keys())
+                                if env_is_set('UDE_SYSTEMS') else all_systems.keys())
     env = UdeEnvironment(
         home_dir=home,
         ude_config_dir=ude_config_dir,
