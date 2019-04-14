@@ -1,7 +1,7 @@
 call plug#begin()
 Plug 'christoomey/vim-tmux-navigator' " ctrl+hjkl tmux integration
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
-Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth' " Fix tabs
 
 " Eye candy
 Plug 'crusoexia/vim-monokai'

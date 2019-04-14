@@ -1,4 +1,3 @@
-
 from os import path
 import os
 from ..model import UdeEnvironment
@@ -27,6 +26,7 @@ def setup(env: UdeEnvironment) -> None:
         '+UpdateRemotePlugins',
         '+qall'])
     setup_coc(env)
+    vim_as_git_diff()
 
 
 def setup_coc(env: UdeEnvironment) -> None:
@@ -41,6 +41,10 @@ def setup_coc(env: UdeEnvironment) -> None:
         '"+CocInstall coc-yaml"',
         '+qall'])
 
+def vim_as_git_diff() -> None:
+    os.system("git config merge.tool nvim -d")
+    os.system("git config merge.conflictstyle diff3")
+    os.system("git config mergetool.prompt false")
 
 def install_plug(env: UdeEnvironment) -> None:
     plug_dir = path.join(

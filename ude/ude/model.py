@@ -15,6 +15,5 @@ class UdeEnvironment:
     features: List[UdeFeature]
 
     def enabled_features(self) -> List[str]:
-        print(self.features)
         return [f.name for f in self.features]
 

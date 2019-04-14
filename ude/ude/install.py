@@ -1,9 +1,9 @@
-from typing import List, Callable, Dict, Collection
+from typing import List, Callable, Dict, Collection, TypeVar
 from dataclasses import replace
 from functools import reduce
 import os
 import pathlib
-from .systems import neovim
+from .systems import neovim, tmux
 from .features import python, fzf, typescript
 from .model import UdeEnvironment, UdeFeature
 
@@ -17,14 +17,16 @@ all_features: Dict[str, FeatureSetup] = {
 }
 
 all_systems: Dict[str, SystemSetup] = {
-    'neovim': neovim.setup
+    'neovim': neovim.setup,
+    'tmux': tmux.setup
 }
 
 
-def setup_feature(feature: FeatureSetup, env: UdeEnvironment) -> UdeEnvironment:
+def setup_feature(feature: FeatureSetup, name: str, env: UdeEnvironment) -> UdeEnvironment:
     """
     Run the feature setup for the specified feature in the systems list.
     """
+    print(f"‣ {name}")
     new_feature = feature(env)
     return replace(env, features=env.features + [new_feature])
 
@@ -35,7 +37,7 @@ def setup_features(feature_list: Dict[str, FeatureSetup], features: Collection[s
     Setup must be included in feature_list.
     """
     return reduce(
-        lambda env, feature: setup_feature(feature_list[feature], env),
+        lambda env, feature: setup_feature(feature_list[feature], feature, env),
         features,
         env)
 
@@ -45,6 +47,7 @@ def setup_systems(systems_list: Dict[str, SystemSetup], systems: Collection[str]
     Run the system setup for the specified system in the systems list.
     """
     for system in systems:
+        print(f"▹ {system}")
         systems_list[system](env)
 
 
@@ -69,16 +72,22 @@ def env_is_set(env: str) -> bool:
     return os.getenv(env, False) != False
 
 
+def env_list(env: str, default: Collection[str]) -> Collection[str]:
+    return (split_and_trim(os.getenv(env, ''))
+            if env_is_set(env) else default)
+
+
 def main() -> None:
     home = os.getenv('UDE_USER_HOME', str(pathlib.Path.home()))
     ude_config_dir = os.getenv(
         'UDE_CONFIG_DIR', os.path.join(home, '.config', 'ude'))
     if not os.path.exists(ude_config_dir):
         os.makedirs(ude_config_dir)
-    features: Collection[str] = (split_and_trim(os.getenv('UDE_FEATURES', ''))
-                                 if env_is_set('UDE_FEATURES') else all_features.keys())
-    systems: Collection[str] = (split_and_trim(os.getenv('UDE_SYSTEMS', ''))
-                                if env_is_set('UDE_SYSTEMS') else all_systems.keys())
+
+    features_env = env_list('UDE_FEATURES', all_features.keys())
+    exclude_features = env_list('UDE_EXCLUDE_FEATURES', [])
+    features = list(set(features_env) - set(exclude_features))
+    systems = env_list('UDE_SYSTEMS', all_systems.keys())
     env = UdeEnvironment(
         home_dir=home,
         ude_config_dir=ude_config_dir,
