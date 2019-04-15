@@ -35,40 +35,41 @@ unix-dev-env/install.sh
   * Ex.: `UDE_EXCLUDE_FEATURES=go install.sh`
 * See the `ude/features` folder for all available features. Each file is a feature name.
 
-## NVIM / TMUX Key Maps
+## Key Maps
 
 ### Navigation
 
-| Key       | Action                            |
-|-----------|-----------------------------------|
-| ctrl+b w  | Select tmux pane / project        |
-| ctrl+hjkl | Move between windows              |
-| ctrl+b z  | Zoom in / out of a window         |
-| \b        | Shows open buffers                |
-| \p        | Open file in project              |
-| \P        | Open file from home dir           |
-| \v        | Open file in a new vertical split |
+| Key        | Action                                     |
+|------------|--------------------------------------------|
+| ctrl+b w   | Select tmux pane / project                 |
+| ctrl+hjkl  | Move between windows                       |
+| ctrl+b z   | Zoom in / out of a window                  |
+| <space> b  | Shows open buffers                         |
+| <space> p  | Open file in project                       |
+| <space> P  | Open file from home dir                    |
+| <space> vp | Open project file in a new vertical split  |
+| <space> vP | Open home dir file in a new vertical split |
+| <space> vb | Open buffer in a vertical split            |
 
 ### Code
 
-| Key       | Action                           |
-|-----------|----------------------------------|
-| gd        | Go to definition                 |
-| gy        | Go to type definition            |
-| gi        | Go to implementation             |
-| gr        | References                       |
-| K         | Show docs                        |
-| \rn       | Rename                           |
-| \f        | Format selected                  |
-| \a        | Code actions for cursor position |
-| \qf       | Quick fix                        |
-| <space> a | Show errors / diagnostics        |
-| <space> c | Show commands                    |
-| <space> o | Find symbol in file              |
-| <space> s | Find symbol in workspace         |
-| <space> p | Open previous list               |
-| :Format   | Formats entire buffer            |
-| :Ag       | Search in project                |
+| Key        | Action                           |
+|------------|----------------------------------|
+| gd         | Go to definition                 |
+| gy         | Go to type definition            |
+| gi         | Go to implementation             |
+| gr         | References                       |
+| K          | Show docs                        |
+| <space> rn | Rename                           |
+| <space> f  | Format selected                  |
+| <space> a  | Code actions for cursor position |
+| <space> qf | Quick fix                        |
+| <space> e  | Show errors / diagnostics        |
+| <space> c  | Show commands                    |
+| <space> o  | Find symbol in file              |
+| <space> s  | Find symbol in workspace         |
+| :Format    | Formats entire buffer            |
+| :Ag        | Search in project                |
 
 ### Markdown
 

@@ -49,6 +49,8 @@ def vim_as_git_diff() -> None:
 def install_plug(env: UdeEnvironment) -> None:
     plug_dir = path.join(
         env.home_dir, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')
+    if path.exists(plug_dir):
+        return
     run_cmd([
         'curl',
         '-fLo',
