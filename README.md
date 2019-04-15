@@ -39,14 +39,15 @@ unix-dev-env/install.sh
 
 ### Navigation
 
-| Key       | Action                     |
-|-----------|----------------------------|
-| ctrl+b w  | Select tmux pane / project |
-| ctrl+hjkl | Move between windows       |
-| ctrl+b z  | Zoom in / out of a window  |
-| \b        | Shows open buffers         |
-| \p        | Open file in project       |
-| \P        | Open file from home dir    |
+| Key       | Action                            |
+|-----------|-----------------------------------|
+| ctrl+b w  | Select tmux pane / project        |
+| ctrl+hjkl | Move between windows              |
+| ctrl+b z  | Zoom in / out of a window         |
+| \b        | Shows open buffers                |
+| \p        | Open file in project              |
+| \P        | Open file from home dir           |
+| \v        | Open file in a new vertical split |
 
 ### Code
 

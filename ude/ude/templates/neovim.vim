@@ -128,3 +128,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Remap for listing buffers
 vmap <leader>b  :<C-u>Buffers<cr>
 nmap <leader>b  :<C-u>Buffers<cr>
+
+" Open on new vertical split
+nmap <leader>v  <C-w>v<C-l><leader>p 
