@@ -47,9 +47,12 @@ unix-dev-env/install.sh
 | <space> b  | Open buffer                                |
 | <space> p  | Open file in project                       |
 | <space> P  | Open file from home dir                    |
+| <space> o  | Open file explorer                         |
 | <space> vp | Open project file in a new vertical split  |
 | <space> vP | Open home dir file in a new vertical split |
 | <space> vb | Open buffer in a vertical split            |
+| <space> vo | Open file explorer in a vertical split     |
+
 
 ### Code
 

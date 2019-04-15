@@ -136,5 +136,11 @@ nmap <space>vp  <C-w>v<C-l><space>p
 nmap <space>vP  <C-w>v<C-l><space>P 
 nmap <space>vb  <C-w>v<C-l><space>b
 
-" Remap for listing buffers
+" Finds text in files
 nmap <space>fp  :<C-u>Ag<cr>
+
+" Open file explorer
+nmap <space>o  :<C-u>Explore<cr>
+
+" Open file explorer in vertical split
+nmap <space>vo  <C-w>v<C-l>:<C-u>Explore<cr>
