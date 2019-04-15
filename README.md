@@ -44,7 +44,7 @@ unix-dev-env/install.sh
 | ctrl+b w   | Select tmux pane / project                 |
 | ctrl+hjkl  | Move between windows                       |
 | ctrl+b z   | Zoom in / out of a window                  |
-| <space> b  | Shows open buffers                         |
+| <space> b  | Open buffer                                |
 | <space> p  | Open file in project                       |
 | <space> P  | Open file from home dir                    |
 | <space> vp | Open project file in a new vertical split  |
@@ -61,15 +61,15 @@ unix-dev-env/install.sh
 | gr         | References                       |
 | K          | Show docs                        |
 | <space> rn | Rename                           |
-| <space> f  | Format selected                  |
+| <space> fs | Format selected                  |
 | <space> a  | Code actions for cursor position |
 | <space> qf | Quick fix                        |
 | <space> e  | Show errors / diagnostics        |
 | <space> c  | Show commands                    |
-| <space> o  | Find symbol in file              |
-| <space> s  | Find symbol in workspace         |
+| <space> sf | Search symbol in file            |
+| <space> sp | Search symbol in project         |
+| <space> fp | Find in all files in project     |
 | :Format    | Formats entire buffer            |
-| :Ag        | Search in project                |
 
 ### Markdown
 

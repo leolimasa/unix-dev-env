@@ -91,8 +91,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <space>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-vmap <space>f  <Plug>(coc-format-selected)
-nmap <space>f  <Plug>(coc-format-selected)
+vmap <space>fs  <Plug>(coc-format-selected)
+nmap <space>fs  <Plug>(coc-format-selected)
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <space>a  <Plug>(coc-codeaction-selected)
@@ -117,8 +117,9 @@ nnoremap <silent> <space>e  :<C-u>CocList diagnostics<cr>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr> " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>sf  :<C-u>CocList outline<cr> 
+" Search workspace symbols
+nnoremap <silent> <space>sp  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -134,3 +135,6 @@ nmap <space>b  :<C-u>Buffers<cr>
 nmap <space>vp  <C-w>v<C-l><space>p 
 nmap <space>vP  <C-w>v<C-l><space>P 
 nmap <space>vb  <C-w>v<C-l><space>b
+
+" Remap for listing buffers
+nmap <space>fp  :<C-u>Ag<cr>
