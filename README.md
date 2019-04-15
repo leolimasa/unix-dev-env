@@ -33,7 +33,7 @@ unix-dev-env/install.sh
   * Ex.: `UDE_FEATURES=python,rust install.sh`
 * Put features that you want excluded into `UDE_EXCLUDE_FEATURES` if you want to install all but a few
   * Ex.: `UDE_EXCLUDE_FEATURES=go install.sh`
-* See [
+* See the `ude/features` folder for all available features. Each file is a feature name.
 
 ## NVIM / TMUX Key Maps
 
