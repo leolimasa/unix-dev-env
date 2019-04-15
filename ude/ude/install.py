@@ -4,7 +4,7 @@ from functools import reduce
 import os
 import pathlib
 from .systems import neovim, tmux, bash
-from .features import python, fzf, typescript
+from .features import python, fzf, typescript, rust
 from .model import UdeEnvironment, UdeFeature
 
 FeatureSetup = Callable[[UdeEnvironment], UdeFeature]
@@ -13,7 +13,8 @@ SystemSetup = Callable[[UdeEnvironment], None]
 all_features: Dict[str, FeatureSetup] = {
     'python': python.setup,
     'fzf': fzf.setup,
-    'typescript': typescript.setup
+    'typescript': typescript.setup,
+    'rust': rust.setup
 }
 
 all_systems: Dict[str, SystemSetup] = {

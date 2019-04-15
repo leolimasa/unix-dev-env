@@ -9,7 +9,7 @@ tmux split-window -h
 # CD into directories
 tmux select-pane -t 0
 tmux send-keys "cd $1" Enter
-tmux send-keys "vim" Enter
+tmux send-keys "nvim" Enter
 tmux send-keys -t 1 "cd $1" Enter
 tmux send-keys -t 2 "cd $1" Enter
 

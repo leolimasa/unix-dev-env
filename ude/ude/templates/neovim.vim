@@ -2,6 +2,8 @@ call plug#begin()
 Plug 'christoomey/vim-tmux-navigator' " ctrl+hjkl tmux integration
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
 Plug 'tpope/vim-sleuth' " Fix tabs
+Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular' " Required for markdown table formatting
 
 " Eye candy
 Plug 'crusoexia/vim-monokai'
@@ -19,7 +21,7 @@ Plug 'ianks/vim-tsx'
 call plug#end()
 
 colorscheme material
-set termguicolors
+set termguicolors 
 set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
 set noswapfile     "no swap files
@@ -122,3 +124,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Remap for listing buffers
+vmap <leader>b  :<C-u>Buffers<cr>
+nmap <leader>b  :<C-u>Buffers<cr>
