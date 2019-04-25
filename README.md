@@ -39,19 +39,23 @@ unix-dev-env/install.sh
 
 ### Navigation
 
-| Key        | Action                                     |
-|------------|--------------------------------------------|
-| ctrl+b w   | Select tmux pane / project                 |
-| ctrl+hjkl  | Move between windows                       |
-| ctrl+b z   | Zoom in / out of a window                  |
-| <space> b  | Open buffer                                |
-| <space> p  | Open file in project                       |
-| <space> P  | Open file from home dir                    |
-| <space> o  | Open file explorer                         |
-| <space> vp | Open project file in a new vertical split  |
-| <space> vP | Open home dir file in a new vertical split |
-| <space> vb | Open buffer in a vertical split            |
-| <space> vo | Open file explorer in a vertical split     |
+| Key                | Action                                     |
+|--------------------|--------------------------------------------|
+| ctrl+b w           | Select tmux pane / project                 |
+| ctrl+hjkl          | Move between windows                       |
+| ctrl+b z           | Zoom in / out of a window                  |
+| ctrl+b alt+[arrow] | Increase / decrease size of pane           |
+| ctrl+b {           | Move pane left                             |
+| ctr+b }            | Move pane right                            |
+| ctrl+b &           | Close current project / window             |
+| <space> b          | Open buffer                                |
+| <space> p          | Open file in project                       |
+| <space> P          | Open file from home dir                    |
+| <space> o          | Open file explorer                         |
+| <space> vp         | Open project file in a new vertical split  |
+| <space> vP         | Open home dir file in a new vertical split |
+| <space> vb         | Open buffer in a vertical split            |
+| <space> vo         | Open file explorer in a vertical split     |
 
 
 ### Code
