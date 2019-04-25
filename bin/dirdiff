@@ -3,5 +3,5 @@ diff -bur --exclude=.git base/ changes/ > changes.diff
 diff -qr --exclude=.git base/ changes/ > files.diff
 
 # Makes vimcommands file
-sed 's/^Files \(.*\) and \(.*\) differ$/vimdiff \1 \2/' files.diff > vimcommands
-sed -i "" 's/^Only in \(.*\): \(.*\)/vim \1\/\2/' vimcommands
+sed 's/^Files \(.*\) and \(.*\) differ$/nvim -d \1 \2/' files.diff > vimcommands
+sed -i "" 's/^Only in \(.*\): \(.*\)/nvim \1\/\2/' vimcommands
