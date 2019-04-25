@@ -93,7 +93,16 @@ unix-dev-env/install.sh
 
 ## Binaries
 
-TODO
+All these commands will be installed in your path.
+
+| Name           | Description                                                                                                            |
+|----------------|------------------------------------------------------------------------------------------------------------------------|
+| autonumber     | Adds numbers to indented text coming from STDIN. Useful for adding number bullet points to markdown through vim pipes. |
+| gitdiff        | Checks out two git branches and creates a diff between them                                                            |
+| history-find   | Fuzzy searches your command history                                                                                    |
+| tmux-newwindow | Creates a new tmux tab for a folder. E.g: `tmux-newwindow some/project/dir`. Needs to be ran inside tmux               |
+| filter.py      | Outputs everything from stdin to stdout. Useful for things like running psql through a pipe.
+
 
 ## Tips
 
