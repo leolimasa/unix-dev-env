@@ -3,6 +3,7 @@ import subprocess
 import os
 import re
 import jinja2
+import platform
 from .model import UdeEnvironment
 
 
@@ -45,8 +46,14 @@ def write_to_file(path: str, contents: str) -> None:
     file.close()
 
 
-def install_package(pkg: str) -> None:
-    run_cmd(['brew', 'install', pkg])
+def install_package(apt_pkg: str, mac_pkg: Optional[str]=None) -> None:
+    if platform.system() == 'Linux':
+        run_cmd(['apt', 'install', apt_pkg])
+    elif platform.system() == 'Darwin':
+        cmd = mac_pkg if mac_pkg is not None else apt_pkg
+        run_cmd(['brew', 'install', cmd])
+    else:
+        raise Exception(f'Unsupported platform: {platform.system()}')
 
 
 def append_to_file(path: str, contents: str) -> None:

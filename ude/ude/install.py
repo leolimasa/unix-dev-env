@@ -53,6 +53,10 @@ def setup_systems(systems_list: Dict[str, SystemSetup], systems: Collection[str]
         print(f"▹ {system}")
         systems_list[system](env)
 
+def features_post_install(env: UdeEnvironment) -> None:
+    for feature in env.features:
+        if feature.post_install is not None:
+            feature.post_install(env)
 
 def setup(feature_list: Dict[str, FeatureSetup],
           systems_list: Dict[str, SystemSetup],
@@ -64,6 +68,7 @@ def setup(feature_list: Dict[str, FeatureSetup],
     """
     new_env = setup_features(feature_list, features, env)
     setup_systems(systems_list, systems, new_env)
+    features_post_install(new_env)
 
 
 def split_and_trim(input: str) -> List[str]:
@@ -100,7 +105,8 @@ def main() -> None:
         home_dir=home,
         repo_dir=repo_dir(),
         ude_config_dir=ude_config_dir,
-        features=[]
+        features=[],
+        systems=systems
     )
     setup(all_features, all_systems, features, systems, env)
 
