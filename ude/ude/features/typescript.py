@@ -10,7 +10,7 @@ def setup(env: UdeEnvironment) -> UdeFeature:
         # TODO add OSX installation here as well (which is a PITA)
         if platform.system() == 'Linux':
             os.system('curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash')
-            os.system('~/.nvm/nvm.sh install node')
+            os.system('sh ~/.nvm/nvm.sh install node')
     run_cmd(['npm', 'install', '-g', 'javascript-typescript-langserver'])
     return UdeFeature(
         name='typescript',
