@@ -10,6 +10,10 @@ def setup(env: UdeEnvironment) -> None:
     except:
         install_package('neovim')
     try:
+        run_cmd(['which', 'ag'])
+    except:
+        install_package('ag')
+    try:
         run_cmd(['which', 'yarn'])
     except:
         os.system('curl -o- -L https://yarnpkg.com/install.sh | bash')
@@ -41,10 +45,18 @@ def setup_coc(env: UdeEnvironment) -> None:
         '"+CocInstall coc-yaml"',
         '+qall'])
 
+    if "typescript" in env.enabled_features():
+    	run_cmd(['nvim', '"+CocInstall coc-python"', '+qall'])
+
+    if "python" in env.enabled_features():
+    	run_cmd(['nvim', '"+CocInstall coc-tsserver"', '+qall'])
+        
+
 def vim_as_git_diff() -> None:
-    os.system("git config merge.tool nvim -d")
-    os.system("git config merge.conflictstyle diff3")
-    os.system("git config mergetool.prompt false")
+    os.system("git config --global merge.tool nvim -d")
+    os.system("git config --global merge.conflictstyle diff3")
+    os.system("git config --global mergetool.prompt false")
+    os.system("git config --global core.editor nvim")
 
 def install_plug(env: UdeEnvironment) -> None:
     plug_dir = path.join(
