@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	apt install python3.7
 	apt install python3-setuptools
-	apt install virtualenv
+	apt install python3-venv
 #elif [[ "$OSTYPE" == "darwin"* ]]; then
 # ...
 fi
