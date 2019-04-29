@@ -104,3 +104,9 @@ def rewrite_file_block(block_start: str, block_end: str, path: str, contents: st
     file = open(path, 'w')
     file.write(data_edited)
     file.close()
+
+def run_script(script: str) -> None:
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
+    run_cmd(['sh', os.path.join(cur_dir, 'scripts', script)])
+
+
