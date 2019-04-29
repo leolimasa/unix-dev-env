@@ -7,10 +7,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	apt install python3-setuptools
 	apt install virtualenv
 	virtualenv venv
-	
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	# ...
+#elif [[ "$OSTYPE" == "darwin"* ]]; then
+# ...
 fi
-
 python3.7 setup.py develop
 python3.7 -m ude.install
