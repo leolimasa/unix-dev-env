@@ -15,14 +15,16 @@ def setup(env: UdeEnvironment) -> UdeFeature:
         else:
             raise Exception(f'Fzf not supported on {platform.system()}')
     return UdeFeature(
-            name='fzf',
-            envs={},
-            post_install=None
-            )
+        name='fzf',
+        envs={},
+        post_install=None
+    )
+
 
 def setup_linux(env: UdeEnvironment) -> None:
-    run_cmd(['git','clone','--depth','1',
-        'https://github.com/junegunn/fzf.git',
-        path.join(env.home_dir, '.fzf')])
-    run_cmd([path.join(env.home_dir, '.fzf', 'install')])
-
+    fzf_path = path.join(env.home_dir, '.fzf')
+    if not path.exists(fzf_path):
+        run_cmd(['git', 'clone', '--depth', '1',
+                 'https://github.com/junegunn/fzf.git',
+                 fzf_path])
+    run_cmd([path.join(fzf_path, 'install')])
