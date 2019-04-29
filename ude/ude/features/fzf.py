@@ -23,6 +23,6 @@ def setup(env: UdeEnvironment) -> UdeFeature:
 def setup_linux(env: UdeEnvironment) -> None:
     run_cmd(['git','clone','--depth','1',
         'https://github.com/junegunn/fzf.git',
-        path.join(env.home_dir, ".fzf")])
-    run_cmd(['~/.fzf/install'])
+        path.join(env.home_dir, '.fzf')])
+    run_cmd([path.join(env.home_dir, '.fzf', 'install')])
 
