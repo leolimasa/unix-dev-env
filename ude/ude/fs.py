@@ -48,7 +48,7 @@ def write_to_file(path: str, contents: str) -> None:
 
 def install_package(apt_pkg: str, mac_pkg: Optional[str]=None) -> None:
     if platform.system() == 'Linux':
-        run_cmd(['apt', 'install', apt_pkg])
+        os.system(f'apt install {apt_pkg}')
     elif platform.system() == 'Darwin':
         cmd = mac_pkg if mac_pkg is not None else apt_pkg
         run_cmd(['brew', 'install', cmd])
