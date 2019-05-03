@@ -5,6 +5,13 @@ Plug 'tpope/vim-sleuth' " Fix tabs
 Plug 'plasticboy/vim-markdown'
 Plug 'godlygeek/tabular' " Required for markdown table formatting
 
+" Coc extensions
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+
 " Eye candy
 Plug 'crusoexia/vim-monokai'
 Plug 'kaicataldo/material.vim'
@@ -15,8 +22,12 @@ Plug 'junegunn/fzf.vim'
 {% endif %}
 
 {% if "typescript" in enabled_features %}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
+{% endif %}
+{% if "python" in enabled_features %}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 {% endif %}
 call plug#end()
 

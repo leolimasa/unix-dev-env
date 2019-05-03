@@ -48,14 +48,14 @@ unix-dev-env/install.sh
 | ctrl+b {           | Move pane left                             |
 | ctr+b }            | Move pane right                            |
 | ctrl+b &           | Close current project / window             |
-| <space> b          | Open buffer                                |
-| <space> p          | Open file in project                       |
-| <space> P          | Open file from home dir                    |
-| <space> o          | Open file explorer                         |
-| <space> vp         | Open project file in a new vertical split  |
-| <space> vP         | Open home dir file in a new vertical split |
-| <space> vb         | Open buffer in a vertical split            |
-| <space> vo         | Open file explorer in a vertical split     |
+| space b          | Open buffer                                |
+| space p          | Open file in project                       |
+| space P          | Open file from home dir                    |
+| space o          | Open file explorer                         |
+| space vp         | Open project file in a new vertical split  |
+| space vP         | Open home dir file in a new vertical split |
+| space vb         | Open buffer in a vertical split            |
+| space vo         | Open file explorer in a vertical split     |
 
 
 ### Code
@@ -67,15 +67,15 @@ unix-dev-env/install.sh
 | gi          | Go to implementation             |
 | gr          | References                       |
 | K           | Show docs                        |
-| <space> rn  | Rename                           |
-| <space> fs  | Format selected                  |
-| <space> a   | Code actions for cursor position |
-| <space> qf  | Quick fix                        |
-| <space> e   | Show errors / diagnostics        |
-| <space> c   | Show commands                    |
-| <space> yf  | Find symbol in file              |
-| <space> yp) | Find symbol in project           |
-| <space> sp  | Search all files in project      |
+| space rn  | Rename                           |
+| space fs  | Format selected                  |
+| space a   | Code actions for cursor position |
+| space qf  | Quick fix                        |
+| space e   | Show errors / diagnostics        |
+| space c   | Show commands                    |
+| space yf  | Find symbol in file              |
+| space yp) | Find symbol in project           |
+| space sp  | Search all files in project      |
 | :Format     | Formats entire buffer            |
 
 ### Markdown

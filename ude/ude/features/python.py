@@ -8,9 +8,6 @@ def setup(env: UdeEnvironment) -> UdeFeature:
     return UdeFeature(
         name='python',
         envs={},
-        post_install=post_install
+        post_install=None
     )
 
-def post_install(env: UdeEnvironment) -> None:
-    if 'neovim' in env.systems:
-        run_cmd(['nvim', '"+CocInstall coc-python"', '+qall'])
