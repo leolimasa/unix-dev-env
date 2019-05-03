@@ -1,5 +1,6 @@
 from os import path
 import os
+import platform
 from ..model import UdeEnvironment
 from ..fs import write_template, rewrite_file_block, run_cmd, install_package
 
@@ -8,11 +9,14 @@ def setup(env: UdeEnvironment) -> None:
     try:
         run_cmd(['which', 'nvim'])
     except:
-        install_package('neovim')
+        if platform.system() == 'Linux':
+            setup_linux()
+        else:
+            install_package('neovim')
     try:
         run_cmd(['which', 'ag'])
     except:
-        install_package('ag')
+        install_package('silversearcher-ag', mac_pkg='ag')
     try:
         run_cmd(['which', 'yarn'])
     except:
@@ -43,14 +47,7 @@ def setup_coc(env: UdeEnvironment) -> None:
         '"+CocInstall coc-css"',
         '"+CocInstall coc-highlight"',
         '"+CocInstall coc-yaml"',
-        '+qall'])
-
-    if "typescript" in env.enabled_features():
-    	run_cmd(['nvim', '"+CocInstall coc-python"', '+qall'])
-
-    if "python" in env.enabled_features():
-    	run_cmd(['nvim', '"+CocInstall coc-tsserver"', '+qall'])
-        
+        '+qall']) 
 
 def vim_as_git_diff() -> None:
     os.system("git config --global merge.tool nvim -d")
@@ -70,3 +67,8 @@ def install_plug(env: UdeEnvironment) -> None:
         '--create-dirs',
         'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     ])
+
+def setup_linux():
+    os.system("sudo add-apt-repository ppa:neovim-ppa/stable")
+    os.system("sudo apt-get update")
+    os.system("sudo apt-get install neovim")

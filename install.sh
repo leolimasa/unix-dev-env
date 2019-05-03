@@ -6,6 +6,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	apt install python3-setuptools
 	apt install python3.7-venv
 	apt install python3-pip
+	pip3 install wheel
 #elif [[ "$OSTYPE" == "darwin"* ]]; then
 # ...
 fi

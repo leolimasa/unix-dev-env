@@ -10,6 +10,8 @@ def setup(env: UdeEnvironment) -> UdeFeature:
     except:
         os.system("curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh")
         os.system("rustup-init")
+    if platform.system() == 'Linux':
+        os.system('apt install libssl-dev')
     os.system("rustup update")
     os.system("cargo install cargo-edit")
     os.system("rustup component add rls rust-analysis rust-src")
