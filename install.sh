@@ -7,6 +7,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	apt install python3.7-venv
 	apt install python3-pip
 	pip3 install wheel
+	source $DIR/ude/ude/scripts/install_node.sh
 #elif [[ "$OSTYPE" == "darwin"* ]]; then
 # ...
 fi
