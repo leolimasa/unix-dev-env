@@ -117,9 +117,9 @@ nnoremap <silent> <space>e  :<C-u>CocList diagnostics<cr>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>sf  :<C-u>CocList outline<cr> 
+nnoremap <silent> <space>yf  :<C-u>CocList outline<cr> 
 " Search workspace symbols
-nnoremap <silent> <space>sp  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>yp  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -137,7 +137,7 @@ nmap <space>vP  <C-w>v<C-l><space>P
 nmap <space>vb  <C-w>v<C-l><space>b
 
 " Finds text in files
-nmap <space>fp  :<C-u>Ag<cr>
+nmap <space>sp  :<C-u>Ag<cr>
 
 " Open file explorer
 nmap <space>o  :<C-u>Explore<cr>

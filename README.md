@@ -60,23 +60,23 @@ unix-dev-env/install.sh
 
 ### Code
 
-| Key        | Action                           |
-|------------|----------------------------------|
-| gd         | Go to definition                 |
-| gy         | Go to type definition            |
-| gi         | Go to implementation             |
-| gr         | References                       |
-| K          | Show docs                        |
-| <space> rn | Rename                           |
-| <space> fs | Format selected                  |
-| <space> a  | Code actions for cursor position |
-| <space> qf | Quick fix                        |
-| <space> e  | Show errors / diagnostics        |
-| <space> c  | Show commands                    |
-| <space> sf | Search symbol in file            |
-| <space> sp | Search symbol in project         |
-| <space> fp | Find in all files in project     |
-| :Format    | Formats entire buffer            |
+| Key         | Action                           |
+|-------------|----------------------------------|
+| gd          | Go to definition                 |
+| gy          | Go to type definition            |
+| gi          | Go to implementation             |
+| gr          | References                       |
+| K           | Show docs                        |
+| <space> rn  | Rename                           |
+| <space> fs  | Format selected                  |
+| <space> a   | Code actions for cursor position |
+| <space> qf  | Quick fix                        |
+| <space> e   | Show errors / diagnostics        |
+| <space> c   | Show commands                    |
+| <space> yf  | Find symbol in file              |
+| <space> yp) | Find symbol in project           |
+| <space> sp  | Search all files in project      |
+| :Format     | Formats entire buffer            |
 
 ### Markdown
 
