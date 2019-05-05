@@ -90,6 +90,16 @@ unix-dev-env/install.sh
 | :TableFormat | Formats the table under the cursor |
 | :Toc         | Opens up the TOC for the markdown
 
+### Git
+
+| Key        | Action                                                  |
+|------------|---------------------------------------------------------|
+| :Gstatus   | Shows staged / unstaged files                           |
+| :Gcommit % | Commits the current file                                |
+| :Gblame    | Git blames the current file                             |
+| :Ggrep     | Runs git grep                                           |
+| :Gdiff     | Shows differences between the staged and commited files |
+
 
 ## Binaries
 

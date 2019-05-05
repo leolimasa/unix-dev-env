@@ -1,11 +1,12 @@
 call plug#begin()
-Plug 'christoomey/vim-tmux-navigator' " ctrl+hjkl tmux integration
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
-Plug 'tpope/vim-sleuth' " Fix tabs
-Plug 'plasticboy/vim-markdown'
-Plug 'godlygeek/tabular' " Required for markdown table formatting
+Plug 'christoomey/vim-tmux-navigator'  " ctrl+hjkl tmux integration
+Plug 'tpope/vim-sleuth'                " Fix tabs
+Plug 'plasticboy/vim-markdown'         " Markdown support
+Plug 'godlygeek/tabular'               " Required for markdown table formatting
+Plug 'tpope/vim-fugitive'              " GIT plugin
 
-" Coc extensions
+" Coc Language Server Protocol support
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
@@ -26,11 +27,15 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 {% endif %}
+
 {% if "python" in enabled_features %}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 {% endif %}
 call plug#end()
 
+" ---------------
+"  Basic Config
+" ---------------
 colorscheme material
 set termguicolors 
 set nobackup       "no backup files

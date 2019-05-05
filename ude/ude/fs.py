@@ -1,9 +1,11 @@
-from typing import List, Optional
-import subprocess
 import os
-import re
-import jinja2
 import platform
+import re
+import subprocess
+from typing import List, Optional
+
+import jinja2
+
 from .model import UdeEnvironment
 
 
@@ -108,5 +110,3 @@ def rewrite_file_block(block_start: str, block_end: str, path: str, contents: st
 def run_script(script: str) -> None:
     cur_dir = os.path.dirname(os.path.abspath(__file__))
     run_cmd(['sh', os.path.join(cur_dir, 'scripts', script)])
-
-
