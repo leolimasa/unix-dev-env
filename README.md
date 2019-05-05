@@ -99,6 +99,7 @@ unix-dev-env/install.sh
 | :Gblame    | Git blames the current file                             |
 | :Ggrep     | Runs git grep                                           |
 | :Gdiff     | Shows differences between the staged and commited files |
+| :Git ...   | Runs any git command                                    |
 
 
 ## Binaries
