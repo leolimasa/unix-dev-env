@@ -3,7 +3,13 @@
 # source /path/to/this/file
 
 # Correct colors
-export TERM=xterm-256color
+if ! [ -z "$TMUX" ]
+then
+	export TERM=screen-256color
+	alias ls='ls --color=auto'
+else
+	export TERM=xterm-256color
+fi
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'

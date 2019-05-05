@@ -8,4 +8,7 @@ def setup(env: UdeEnvironment) -> None:
     rewrite_file_block("# UDE START\n", "# UDE END\n",
             os.path.join(env.home_dir, ".bash_profile"),
             f'source {bashrc_conf}\n')
+    rewrite_file_block("# UDE START\n", "# UDE END\n",
+            os.path.join(env.home_dir, ".bashrc"),
+            f'source {bashrc_conf}\n')
     write_template("bashrc", env)

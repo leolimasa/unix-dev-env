@@ -12,8 +12,10 @@ nvim + tmux + bash setup for my own personal needs. Supports, out of the box:
 * tmux / nvim integration
 * language server protocol
 * code review helpers
+* pretty colors
+* custom key mappings
 
-Tested on OSX. Requires Python 3.7.
+Tested on OSX and Ubuntu/Mint.
 
 ## Installation
 
@@ -24,7 +26,7 @@ unix-dev-env/install.sh
 
 ## Basic Usage
 
-* Run a tmux session by doing `tmux`
+* Run a tmux session by doing `tmux -2`
 * Run `tmux-newwindow [folder]` to open a new project at the folder
 
 ## Features
@@ -48,35 +50,35 @@ unix-dev-env/install.sh
 | ctrl+b {           | Move pane left                             |
 | ctr+b }            | Move pane right                            |
 | ctrl+b &           | Close current project / window             |
-| space b          | Open buffer                                |
-| space p          | Open file in project                       |
-| space P          | Open file from home dir                    |
-| space o          | Open file explorer                         |
-| space vp         | Open project file in a new vertical split  |
-| space vP         | Open home dir file in a new vertical split |
-| space vb         | Open buffer in a vertical split            |
-| space vo         | Open file explorer in a vertical split     |
+| space b            | Open buffer                                |
+| space p            | Open file in project                       |
+| space P            | Open file from home dir                    |
+| space o            | Open file explorer                         |
+| space vp           | Open project file in a new vertical split  |
+| space vP           | Open home dir file in a new vertical split |
+| space vb           | Open buffer in a vertical split            |
+| space vo           | Open file explorer in a vertical split     |
 
 
 ### Code
 
-| Key         | Action                           |
-|-------------|----------------------------------|
-| gd          | Go to definition                 |
-| gy          | Go to type definition            |
-| gi          | Go to implementation             |
-| gr          | References                       |
-| K           | Show docs                        |
-| space rn  | Rename                           |
-| space fs  | Format selected                  |
-| space a   | Code actions for cursor position |
-| space qf  | Quick fix                        |
-| space e   | Show errors / diagnostics        |
-| space c   | Show commands                    |
-| space yf  | Find symbol in file              |
-| space yp) | Find symbol in project           |
-| space sp  | Search all files in project      |
-| :Format     | Formats entire buffer            |
+| Key      | Action                           |
+|----------|----------------------------------|
+| gd       | Go to definition                 |
+| gy       | Go to type definition            |
+| gi       | Go to implementation             |
+| gr       | References                       |
+| K        | Show docs                        |
+| space rn | Rename                           |
+| space fs | Format selected                  |
+| space a  | Code actions for cursor position |
+| space qf | Quick fix                        |
+| space e  | Show errors / diagnostics        |
+| space c  | Show commands                    |
+| space yf | Find symbol in file              |
+| space yp | Find symbol in project           |
+| space sp | Search all files in project      |
+| :Format  | Formats entire buffer            |
 
 ### Markdown
 
