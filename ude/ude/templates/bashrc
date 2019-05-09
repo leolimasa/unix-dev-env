@@ -6,7 +6,9 @@
 if ! [ -z "$TMUX" ]
 then
 	export TERM=screen-256color
-	alias ls='ls --color=auto'
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		alias ls='ls --color=auto'
+	fi
 else
 	export TERM=xterm-256color
 fi
