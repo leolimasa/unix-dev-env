@@ -4,6 +4,7 @@ Plug 'tpope/vim-sleuth'                " Fix tabs
 Plug 'plasticboy/vim-markdown'         " Markdown support
 Plug 'godlygeek/tabular'               " Required for markdown table formatting
 Plug 'tpope/vim-fugitive'              " GIT plugin
+Plug 'glench/vim-jinja2-syntax'
 
 " Coc Language Server Protocol support
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
