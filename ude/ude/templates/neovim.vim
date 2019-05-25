@@ -47,6 +47,8 @@ set number
 set relativenumber
 set hidden
 set cmdheight=2    " Better display for messages
+set expandtab      " Default to spaces
+set shiftwidth=2   " Default to 2 spaces for indentation
 
 
 {% if "fzf" in enabled_features %}
