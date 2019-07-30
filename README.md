@@ -7,6 +7,7 @@ nvim + tmux + bash setup for my own personal needs. Supports, out of the box:
 * rust
 * python
 * go
+* scala
 * html / css / less
 * markdown
 * tmux / nvim integration
