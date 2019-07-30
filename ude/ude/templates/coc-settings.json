@@ -1,7 +1,21 @@
 {
     "python.jediEnabled": false,
     "python.linting.mypyEnabled": true,
-    "python.linting.mypyArgs": ["--strict"],
+    "python.linting.mypyArgs": [
+        "--strict"
+    ],
     "tsserver.enable": true,
-    "tsserver.log": "verbose"
+    "tsserver.log": "verbose",
+    "languageserver": {
+        "metals": {
+            "command": "metals-vim",
+            "rootPatterns": [
+                "build.sbt"
+            ],
+            "filetypes": [
+                "scala",
+                "sbt"
+            ]
+        }
+    }
 }
