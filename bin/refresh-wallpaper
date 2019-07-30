@@ -1,0 +1,7 @@
+#!/bin/bash
+# Sets wallpaper for two different monitors by picking two different files from the ~/Wallpapers directory.
+# Add more `shuf -n1 -e $WALLDIR` for each monitor.
+if [ -z "$WALLDIR" ]; then
+  WALLDIR=~/Wallpapers
+fi
+feh --bg-scale `shuf -n1 -e $WALLDIR/*` --bg-scale `shuf -n1 -e $WALLDIR/*`
