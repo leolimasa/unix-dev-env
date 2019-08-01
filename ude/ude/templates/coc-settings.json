@@ -3,5 +3,12 @@
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": ["--strict"],
     "tsserver.enable": true,
-    "tsserver.log": "verbose"
+    "tsserver.log": "verbose",
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"]
+        }
+    }
 }

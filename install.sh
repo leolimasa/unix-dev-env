@@ -21,6 +21,7 @@ if ! [ -x "$(command -v node)" ]; then
 fi
 
 cd $DIR/ude
+rm -rf venv
 python3.7 -m venv venv
 venv/bin/python3.7 setup.py develop
 venv/bin/python3.7 -m ude.install
