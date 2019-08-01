@@ -1,7 +1,9 @@
 {
     "python.jediEnabled": false,
     "python.linting.mypyEnabled": true,
-    "python.linting.mypyArgs": ["--strict"],
+    "python.linting.mypyArgs": [
+        "--strict"
+    ],
     "tsserver.enable": true,
     "tsserver.log": "verbose",
     "languageserver": {
@@ -9,6 +11,16 @@
             "command": "gopls",
             "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
             "filetypes": ["go"]
+        },
+        "metals": {
+            "command": "metals-vim",
+            "rootPatterns": [
+                "build.sbt"
+            ],
+            "filetypes": [
+                "scala",
+                "sbt"
+            ]
         }
     }
 }
