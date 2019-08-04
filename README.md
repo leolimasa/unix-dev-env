@@ -14,16 +14,23 @@ nvim + tmux + bash setup for my own personal needs. Supports, out of the box:
 * language server protocol
 * code review helpers
 * pretty colors
+* trasparent theme for vim / tmux suitable to have a background on console
 * custom key mappings
 
 Tested on OSX and Ubuntu/Mint.
 
 ## Installation
 
+Download repo, set the features you want to enable, and run installation:
+
 ```
 git clone https://github.com/leolimasa/unix-dev-env 
+echo "UDE_FEATURES=fzf,python,typescript,transparent_theme" >> ~/.bash_profile
+source ~/.bash_profile
 unix-dev-env/install.sh
 ```
+
+If UDE_FEATURES is not defined, it will install everything by default.
 
 ## Basic Usage
 
