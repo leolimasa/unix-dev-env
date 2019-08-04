@@ -1,328 +1,224 @@
-scriptencoding utf-8
+" ==============================================================================
+"   Name:        One Half Dark
+"   Author:      Son A. Pham <sp@sonpham.me>
+"   Url:         https://github.com/sonph/onehalf
+"   License:     The MIT License (MIT)
+"
+"   A dark vim color scheme based on Atom's One. See github.com/sonph/onehalf
+"   for installation instructions, a light color scheme, versions for other
+"   editors/terminals, and a matching theme for vim-airline.
+" ==============================================================================
 
 set background=dark
-hi clear
+highlight clear
+syntax reset
 
-if exists("syntax_on")
-  syntax reset
-endif
+let g:colors_name="trasparent-onehalfdark"
+let colors_name="transparent-onehalfdark"
 
-let g:colors_name="transparent"
 
-" ==========================
-" Highlighting Function
-" ==========================
-fun! <sid>hi(group, fg, bg, attr)
-  if !empty(a:fg)
-    exec "hi " . a:group . " guifg=" . a:fg.gui . " ctermfg=" .  a:fg.cterm256
+let s:black       = { "gui": "#282c34", "cterm": "236" }
+let s:red         = { "gui": "#e06c75", "cterm": "168" }
+let s:green       = { "gui": "#98c379", "cterm": "114" }
+let s:yellow      = { "gui": "#e5c07b", "cterm": "180" }
+let s:blue        = { "gui": "#61afef", "cterm": "75"  }
+let s:purple      = { "gui": "#c678dd", "cterm": "176" }
+let s:cyan        = { "gui": "#56b6c2", "cterm": "73"  }
+let s:white       = { "gui": "#dcdfe4", "cterm": "188" }
+let s:none        = {'gui': 'NONE', 'cterm': 'NONE'}
+
+let s:fg          = s:white
+let s:bg          = s:black
+
+let s:comment_fg  = { "gui": "#5c6370", "cterm": "241" }
+let s:gutter_bg   = { "gui": "#282c34", "cterm": "236" }
+let s:gutter_fg   = { "gui": "#919baa", "cterm": "247" }
+
+let s:cursor_line = { "gui": "#313640", "cterm": "237" }
+let s:color_col   = { "gui": "#313640", "cterm": "237" }
+
+let s:selection   = { "gui": "#474e5d", "cterm": "239" }
+let s:vertsplit   = { "gui": "#313640", "cterm": "237" }
+
+
+function! s:h(group, fg, bg, attr)
+  if type(a:fg) == type({})
+    exec "hi " . a:group . " guifg=" . a:fg.gui . " ctermfg=" . a:fg.cterm
+  else
+    exec "hi " . a:group . " guifg=NONE cterm=NONE"
   endif
-  if !empty(a:bg)
-    exec "hi " . a:group . " guibg=" . a:bg.gui . " ctermbg=" .  a:bg.cterm256
+  if type(a:bg) == type({})
+    exec "hi " . a:group . " guibg=" . a:bg.gui . " ctermbg=" . a:bg.cterm
+  else
+    exec "hi " . a:group . " guibg=NONE ctermbg=NONE"
   endif
   if a:attr != ""
     exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
+  else
+    exec "hi " . a:group . " gui=NONE cterm=NONE"
   endif
 endfun
 
-" ==========================
-" Color Variables
-" ==========================
-let s:simpleBlack = {'gui': '#000000', 'cterm256': 'black'}
-let s:simpleBlack2 = {'gui': '#121212', 'cterm256': '233'}
 
-let s:simpleGray = {'gui': '#262626', 'cterm256': '235'}
-let s:simpleGray2 = {'gui': '#3a3a3a', 'cterm256': '237'}
-let s:simpleGray3 = {'gui': '#4e4e4e', 'cterm256': '239'}
-let s:simpleGray4 = {'gui': '#626262', 'cterm256': '241'}
+" User interface colors {
+call s:h("Normal", s:fg, s:bg, "")
+call s:h("NonText", s:fg, "", "")
 
-let s:simpleSteel = {'gui': '#DEDEDE', 'cterm256': '253'}
-let s:simpleWhite = {'gui': '#F8F8F8', 'cterm256': '231'}
-let s:simpleViolet = {'gui': '#CF73E6', 'cterm256': '170'}
+call s:h("Cursor", s:bg, s:blue, "")
+call s:h("CursorColumn", "", s:cursor_line, "")
+call s:h("CursorLine", "", s:cursor_line, "")
 
-let s:simpleBlue = {'gui': '#5f87af', 'cterm256': '67'}
-let s:simpleBlue2 = {'gui': '#91AADF', 'cterm256': '110'}
+call s:h("LineNr", s:gutter_fg, s:none, "")
+call s:h("CursorLineNr", s:fg, "", "")
 
-let s:simpleGreen = {'gui': '#57BA37', 'cterm256': '71'}
-let s:simpleGoo = {'gui': '#D8FA3B', 'cterm256': '191'}
-let s:simpleGold = {'gui': '#F0D50C', 'cterm256': '220'}
-let s:simpleOrange = {'gui': '#F66100', 'cterm256': '202'}
-let s:simpleRed = {'gui': '#821A1A', 'cterm256': '1'}
-let s:simpleRed2 = {'gui': '#FF0000', 'cterm256': '196'}
-let s:none = {'gui': 'NONE', 'cterm256': 'NONE'}
+call s:h("DiffAdd", s:green, "", "")
+call s:h("DiffChange", s:yellow, "", "")
+call s:h("DiffDelete", s:red, "", "")
+call s:h("DiffText", s:blue, "", "")
 
-" ==========================
-" Definitions
-" ==========================
-"    <sid>hi(GROUP, FOREGROUND, BACKGROUND, ATTRIBUTE)
+call s:h("IncSearch", s:bg, s:yellow, "")
+call s:h("Search", s:bg, s:yellow, "")
 
-" Editor
-call <sid>hi('ColorColumn', s:none, s:simpleBlack2, 'none')
-call <sid>hi('Cursor', s:simpleBlack, s:simpleSteel, 'none')
-call <sid>hi('CursorColumn', s:none, s:simpleBlack2, 'none')
-call <sid>hi('CursorLine', s:none, s:simpleGray, 'none')
-call <sid>hi('CursorLineNr', s:simpleSteel, s:simpleGray, 'none')
-call <sid>hi('Directory', s:simpleBlue, s:none, 'none')
-call <sid>hi('Folded', s:simpleGray3, s:none, 'none')
-call <sid>hi('IncSearch', s:simpleBlack, s:simpleBlue2, 'none')
-call <sid>hi('LineNr', s:simpleGray3, s:none, 'none')
-call <sid>hi('SignColumn', s:simpleGray, s:simpleBlack, 'none')
+call s:h("ErrorMsg", s:fg, "", "")
+call s:h("ModeMsg", s:fg, "", "")
+call s:h("MoreMsg", s:fg, "", "")
+call s:h("WarningMsg", s:red, "", "")
+call s:h("Question", s:purple, "", "")
 
-call <sid>hi('MatchParen', s:simpleWhite, s:simpleBlue2, 'none')
-call <sid>hi('Normal', s:simpleWhite, s:none, 'none')
-call <sid>hi('Pmenu', s:none, s:none, 'none')
-call <sid>hi('PmenuSel', s:none, s:simpleGray2, 'none')
-call <sid>hi('Search', s:simpleBlack, s:simpleBlue2, 'none')
-call <sid>hi('StatusLine', s:simpleBlue2, s:simpleBlack, 'none')
-call <sid>hi('StatusLineNC', s:simpleBlack, s:none, 'none')
-call <sid>hi('VertSplit', s:simpleBlack2, s:none, 'none')
-call <sid>hi('Visual', s:none, s:simpleBlue, 'none')
+call s:h("Pmenu", s:bg, s:fg, "")
+call s:h("PmenuSel", s:fg, s:blue, "")
+call s:h("PmenuSbar", "", s:selection, "")
+call s:h("PmenuThumb", "", s:fg, "")
 
-call <sid>hi('TabLine', s:simpleGray4, s:simpleBlack, 'none')
-call <sid>hi('TabLineFill', s:none, s:simpleBlack, 'none')
-call <sid>hi('TabLineSel', s:simpleBlue, s:simpleBlack, 'none')
+call s:h("SpellBad", s:red, "", "")
+call s:h("SpellCap", s:yellow, "", "")
+call s:h("SpellLocal", s:yellow, "", "")
+call s:h("SpellRare", s:yellow, "", "")
 
-" General
-call <sid>hi('Boolean', s:simpleGoo, s:none, 'none')
-call <sid>hi('Character', s:simpleGoo, s:none, 'none')
-call <sid>hi('Comment', s:simpleBlue, s:none, 'none')
-call <sid>hi('Conditional', s:simpleViolet, s:none, 'none')
-call <sid>hi('Constant', s:simpleOrange, s:none, 'none')
-call <sid>hi('Define', s:simpleViolet, s:none, 'none')
-call <sid>hi('DiffAdd', s:simpleBlack, s:simpleGreen, 'none')
-call <sid>hi('DiffChange', s:simpleBlack, s:simpleGold, 'none')
-call <sid>hi('DiffDelete', s:simpleWhite, s:simpleRed, 'none')
-call <sid>hi('DiffText', s:simpleGray, s:simpleBlue2, 'none')
-call <sid>hi('ErrorMsg', s:simpleWhite, s:simpleRed, 'none')
-call <sid>hi('Float', s:simpleGoo, s:none, 'none')
-call <sid>hi('Function', s:simpleBlue2, s:none, 'none')
-call <sid>hi('Identifier', s:simpleGold, s:none, 'none')
-call <sid>hi('Keyword', s:simpleGold, s:none, 'none')
-call <sid>hi('Label', s:simpleGreen, s:none, 'none')
-call <sid>hi('NonText', s:simpleGray, s:none, 'none')
-call <sid>hi('Number', s:simpleGoo, s:none, 'none')
-call <sid>hi('Operator', s:simpleViolet, s:none, 'none')
-call <sid>hi('PreProc', s:simpleViolet, s:none, 'none')
-call <sid>hi('Special', s:simpleWhite, s:none, 'none')
-call <sid>hi('SpecialKey', s:simpleGray, s:simpleBlack, 'none')
-call <sid>hi('SpellBad', s:none, s:none, 'undercurl')
-call <sid>hi('SpellCap', s:none, s:none, 'undercurl')
-call <sid>hi('SpellLocal', s:none, s:none, 'undercurl')
-call <sid>hi('Statement', s:simpleViolet, s:none, 'none')
-call <sid>hi('StorageClass', s:simpleGold, s:none, 'none')
-call <sid>hi('String', s:simpleGreen, s:none, 'none')
-call <sid>hi('Tag', s:simpleGold, s:none, 'none')
-call <sid>hi('Title', s:none, s:none, 'bold')
-call <sid>hi('Todo', s:simpleBlue2, s:none, 'bold')
-call <sid>hi('Type', s:none, s:none, 'none')
-call <sid>hi('Underlined', s:none, s:none, 'underline')
-call <sid>hi('WarningMsg', s:simpleWhite, s:simpleRed, 'none')
+call s:h("StatusLine", s:blue, s:cursor_line, "")
+call s:h("StatusLineNC", s:comment_fg, s:cursor_line, "")
+call s:h("TabLine", s:comment_fg, s:cursor_line, "")
+call s:h("TabLineFill", s:comment_fg, s:cursor_line, "")
+call s:h("TabLineSel", s:fg, s:bg, "")
 
-" Diff Mode
-if &diff
-  call <sid>hi('DiffAdd', s:simpleBlack, s:simpleGreen, 'none')
-  call <sid>hi('DiffChange', s:simpleBlack, s:simpleGold, 'none')
-  call <sid>hi('DiffDelete', s:simpleRed2, s:simpleRed, 'none')
-  call <sid>hi('DiffText', s:simpleGray, s:simpleBlue2, 'none')
-else
-  call <sid>hi('DiffAdd', s:simpleGreen, s:none, 'none')
-  call <sid>hi('DiffChange', s:simpleGold, s:none, 'none')
-  call <sid>hi('DiffDelete', s:simpleRed2, s:none, 'none')
-  call <sid>hi('DiffText', s:simpleSteel, s:simpleBlue2, 'none')
-endif
+call s:h("Visual", "", s:selection, "")
+call s:h("VisualNOS", "", s:selection, "")
 
-" CSS
-call <sid>hi('cssAttr', s:simpleViolet, s:none, 'none')
-call <sid>hi('cssAttrRegion', s:simpleViolet, s:none, 'none')
-call <sid>hi('cssBraces', s:simpleWhite, s:none, 'none')
-call <sid>hi('cssBrowserPrefix', s:simpleSteel, s:none, 'none')
-call <sid>hi('cssClassName', s:simpleBlue2, s:none, 'none')
-call <sid>hi('cssClassNameDot', s:simpleSteel, s:none, 'none')
-call <sid>hi('cssClassSelectorDot', s:simpleSteel, s:none, 'none')
-call <sid>hi('cssColor', s:simpleSteel, s:none, 'none')
-call <sid>hi('cssCommonAttr', s:simpleViolet, s:none, 'none')
-call <sid>hi('cssCustomProperty', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssDefinition', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssFunction', s:simpleSteel, s:none, 'none')
-call <sid>hi('cssFunctionName', s:simpleBlue2, s:none, 'none')
-call <sid>hi('cssIdentifier', s:simpleBlue2, s:none, 'none')
-call <sid>hi('cssImportant', s:simpleOrange, s:none, 'none')
-call <sid>hi('cssInclude', s:simpleSteel, s:none, 'none')
-call <sid>hi('cssMedia', s:simpleGoo, s:none, 'none')
-call <sid>hi('cssMediaBlock', s:simpleGoo, s:none, 'none')
-call <sid>hi('cssProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssGeneratedContentProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssTextProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssAnimationProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssUIProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssTransformProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssTransitionProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssPrintProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssPositioningProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssBoxProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssFontDescriptorProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssFlexibleBoxProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssBorderOutlineProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssBackgroundProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssMarginProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssListProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssTableProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssFontProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssPaddingProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssDimensionProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssRenderProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssColorProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssGeneratedContentProp', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssPropDefinition', s:simpleGray4, s:none, 'none')
-call <sid>hi('cssPseudoClass', s:simpleGold, s:none, 'none')
-call <sid>hi('cssPseudoClassId', s:simpleGold, s:none, 'none')
-call <sid>hi('cssPseudoClassLang', s:simpleGold, s:none, 'none')
-call <sid>hi('cssSelectorOperator', s:simpleSteel, s:none, 'none')
-call <sid>hi('cssTagName', s:simpleBlue2, s:none, 'none')
-call <sid>hi('cssURL', s:simpleGold, s:none, 'none')
-call <sid>hi('cssUnitDecorators', s:simpleViolet, s:none, 'none')
-call <sid>hi('cssUnits', s:simpleViolet, s:none, 'none')
-call <sid>hi('cssValueLength', s:simpleBlue2, s:none, 'none')
-call <sid>hi('cssValueNumber', s:simpleBlue2, s:none, 'none')
-call <sid>hi('cssValueKeyword', s:simpleGreen, s:none, 'none')
-call <sid>hi('cssVendor', s:simpleSteel, s:none, 'none')
+call s:h("ColorColumn", "", s:color_col, "")
+call s:h("Conceal", s:fg, "", "")
+call s:h("Directory", s:blue, "", "")
+call s:h("VertSplit", s:vertsplit, s:none, "")
+call s:h("Folded", s:fg, "", "")
+call s:h("FoldColumn", s:fg, "", "")
+call s:h("SignColumn", s:fg, "", "")
 
-" HTML
-call <sid>hi('htmlArg', s:simpleViolet, s:none, 'none')
-call <sid>hi('htmlEndTag', s:simpleSteel, s:none, 'none')
-call <sid>hi('htmlSpecialChar', s:simpleGoo, s:none, 'none')
-call <sid>hi('htmlSpecialTagName', s:simpleBlue2, s:none, 'none')
-call <sid>hi('htmlTag', s:simpleSteel, s:none, 'none')
-call <sid>hi('htmlTagName', s:simpleBlue2, s:none, 'none')
+call s:h("MatchParen", s:blue, "", "underline")
+call s:h("SpecialKey", s:fg, "", "")
+call s:h("Title", s:green, "", "")
+call s:h("WildMenu", s:fg, "", "")
+" }
 
-" JavaScript
-call <sid>hi('javaScript', s:simpleWhite, s:none, 'none')
-call <sid>hi('javaScriptFunction', s:simpleGold, s:none, 'none')
-call <sid>hi('javaScriptIdentifier', s:simpleBlue2, s:none, 'none')
-call <sid>hi('javaScriptMember', s:simpleSteel, s:none, 'none')
-call <sid>hi('javaScriptNull', s:simpleGoo, s:none, 'none')
-call <sid>hi('javaScriptNumber', s:simpleGoo, s:none, 'none')
-call <sid>hi('javaScriptNumber', s:simpleGoo, s:none, 'none')
-call <sid>hi('javaScriptParens', s:simpleWhite, s:none, 'none')
-call <sid>hi('javaScriptSpecial', s:simpleGoo, s:none, 'none')
-call <sid>hi('javaScriptStringS', s:simpleGreen, s:none, 'none')
-call <sid>hi('javascriptArrayMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptArrayStaticMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptArrowFunc', s:simpleGold, s:none, 'none')
-call <sid>hi('javascriptAsyncFuncKeyword', s:simpleGold, s:none, 'none')
-call <sid>hi('javascriptAwaitFuncKeyword', s:simpleGold, s:none, 'none')
-call <sid>hi('javascriptBraces', s:simpleWhite, s:none, 'none')
-call <sid>hi('javascriptBrackets', s:simpleWhite, s:none, 'none')
-call <sid>hi('javascriptCacheMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptClassExtends', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptClassKeyword', s:simpleGold, s:none, 'none')
-call <sid>hi('javascriptClassName', s:simpleBlue2, s:none, 'none')
-call <sid>hi('javascriptClassSuperName', s:simpleBlue2, s:none, 'none')
-call <sid>hi('javascriptDOMElemAttrs', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptDOMEventMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptDOMNodeMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptDOMStorageMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptDateMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptDefault', s:simpleGold, s:none, 'none')
-call <sid>hi('javascriptDocNamedParamType', s:simpleGray4, s:none, 'none')
-call <sid>hi('javascriptDocNotation', s:simpleGray4, s:none, 'none')
-call <sid>hi('javascriptDocParamName', s:simpleGray4, s:none, 'none')
-call <sid>hi('javascriptDocParamType', s:simpleGray4, s:none, 'none')
-call <sid>hi('javascriptDocTags', s:simpleGray4, s:none, 'none')
-call <sid>hi('javascriptEndColons', s:simpleWhite, s:none, 'none')
-call <sid>hi('javascriptExport', s:simpleViolet, s:none, 'none')
-call <sid>hi('javascriptHeadersMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptIdentifierName', s:simpleBlue2, s:none, 'none')
-call <sid>hi('javascriptImport', s:simpleViolet, s:none, 'none')
-call <sid>hi('javascriptLabel', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptLogicSymbols', s:simpleViolet, s:none, 'none')
-call <sid>hi('javascriptMathStaticMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptObjectLabel', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptOperator', s:simpleViolet, s:none, 'none')
-call <sid>hi('javascriptPropertyName', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptStringMethod', s:simpleSteel, s:none, 'none')
-call <sid>hi('javascriptVariable', s:simpleWhite, s:none, 'none')
-call <sid>hi('javascriptYield', s:simpleGold, s:none, 'none')
-call <sid>hi('jsArrowFunction', s:simpleGold, s:none, 'none')
-call <sid>hi('jsClassDefinition', s:simpleBlue2, s:none, 'none')
-call <sid>hi('jsClassKeyword', s:simpleGold, s:none, 'none')
-call <sid>hi('jsDecorator', s:simpleGoo, s:none, 'none')
-call <sid>hi('jsDestructuringBlock', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsExportDefault', s:simpleGold, s:none, 'none')
-call <sid>hi('jsExtendsKeyword', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsFuncArgs', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsFuncCall', s:simpleBlue2, s:none, 'none')
-call <sid>hi('jsFunction', s:simpleGold, s:none, 'none')
-call <sid>hi('jsGlobalObjects', s:simpleOrange, s:none, 'none')
-call <sid>hi('jsModuleKeyword', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsNull', s:simpleGoo, s:none, 'none')
-call <sid>hi('jsObjectBraces', s:simpleWhite, s:none, 'none')
-call <sid>hi('jsObjectKey', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsObjectStringKey', s:simpleGreen, s:none, 'none')
-call <sid>hi('jsRegexpString', s:simpleGoo, s:none, 'none')
-call <sid>hi('jsReturn', s:simpleViolet, s:none, 'none')
-call <sid>hi('jsSpecial', s:simpleGoo, s:none, 'none')
-call <sid>hi('jsSuper', s:simpleOrange, s:none, 'none')
-call <sid>hi('jsTemplateBraces', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsTemplateString', s:simpleGreen, s:none, 'none')
-call <sid>hi('jsThis', s:simpleBlue2, s:none, 'none')
-call <sid>hi('jsVariableDef', s:simpleWhite, s:none, 'none')
 
-" JSX
-call <sid>hi('jsxAttrib', s:simpleViolet, s:none, 'none')
-call <sid>hi('jsxAttributeBraces', s:simpleWhite, s:none, 'none')
-call <sid>hi('jsxCloseString', s:simpleBlue2, s:none, 'none')
-call <sid>hi('jsxCloseTag', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsxString', s:simpleGreen, s:none, 'none')
-call <sid>hi('jsxTag', s:simpleSteel, s:none, 'none')
-call <sid>hi('jsxTagName', s:simpleBlue2, s:none, 'none')
+" Syntax colors {
+call s:h("Comment", s:comment_fg, "", "")
+call s:h("Constant", s:cyan, "", "")
+call s:h("String", s:green, "", "")
+call s:h("Character", s:green, "", "")
+call s:h("Number", s:yellow, "", "")
+call s:h("Boolean", s:yellow, "", "")
+call s:h("Float", s:yellow, "", "")
 
-" Ruby
-call <sid>hi('rubyBlockParameter', s:simpleBlue, s:none, 'none')
-call <sid>hi('rubyClass', s:simpleViolet, s:none, 'none')
-call <sid>hi('rubyClassVariable', s:simpleWhite, s:none, 'none')
-call <sid>hi('rubyConstant', s:simpleOrange, s:none, 'none')
-call <sid>hi('rubyControl', s:simpleViolet, s:none, 'none')
-call <sid>hi('rubyEscape', s:simpleGoo, s:none, 'none')
-call <sid>hi('rubyException', s:simpleViolet, s:none, 'none')
-call <sid>hi('rubyFunction', s:simpleBlue2, s:none, 'none')
-call <sid>hi('rubyGlobalVariable', s:simpleWhite, s:none, 'none')
-call <sid>hi('rubyInclude', s:simpleViolet, s:none, 'none')
-call <sid>hi('rubyInstanceVariable', s:simpleWhite, s:none, 'none')
-call <sid>hi('rubyInterpolationDelimiter', s:none, s:none, 'none')
-call <sid>hi('rubyOperator', s:simpleViolet, s:none, 'none')
-call <sid>hi('rubyPseudoVariable', s:simpleWhite, s:none, 'none')
-call <sid>hi('rubyRegexp', s:simpleGreen, s:none, 'none')
-call <sid>hi('rubyRegexpDelimiter', s:simpleGreen, s:none, 'none')
-call <sid>hi('rubyStringDelimiter', s:simpleGreen, s:none, 'none')
-call <sid>hi('rubySymbol', s:simpleGoo, s:none, 'none')
+call s:h("Identifier", s:red, "", "")
+call s:h("Function", s:blue, "", "")
+call s:h("Statement", s:purple, "", "")
 
-" Ruby (Embedded)
-call <sid>hi('erubyComment', s:simpleGray3, s:none, 'none')
-call <sid>hi('erubyDelimiter', s:none, s:none, 'none')
-call <sid>hi('erubyRailsMethod', s:simpleOrange, s:none, 'none')
+call s:h("Conditional", s:purple, "", "")
+call s:h("Repeat", s:purple, "", "")
+call s:h("Label", s:purple, "", "")
+call s:h("Operator", s:fg, "", "")
+call s:h("Keyword", s:red, "", "")
+call s:h("Exception", s:purple, "", "")
 
-" Ruby on Rails
-call <sid>hi('rubyRailsARAssociationMethod', s:simpleOrange, s:none, 'none')
-call <sid>hi('rubyRailsARMethod', s:simpleOrange, s:none, 'none')
-call <sid>hi('rubyRailsMethod', s:simpleOrange, s:none, 'none')
-call <sid>hi('rubyRailsRenderMethod', s:simpleOrange, s:none, 'none')
-call <sid>hi('rubyRailsUserClass', s:simpleOrange, s:none, 'none')
+call s:h("PreProc", s:yellow, "", "")
+call s:h("Include", s:blue, "", "")
+call s:h("Define", s:purple, "", "")
+call s:h("Macro", s:purple, "", "")
+call s:h("PreCondit", s:yellow, "", "")
 
-" XML
-call <sid>hi('xmlAttrib', s:simpleViolet, s:none, 'none')
-call <sid>hi('xmlEndTag', s:simpleSteel, s:none, 'none')
-call <sid>hi('xmlTag', s:simpleSteel, s:none, 'none')
-call <sid>hi('xmlTagName', s:simpleBlue2, s:none, 'none')
+call s:h("Type", s:yellow, "", "")
+call s:h("StorageClass", s:yellow, "", "")
+call s:h("Structure", s:yellow, "", "")
+call s:h("Typedef", s:yellow, "", "")
 
-" YAML
-call <sid>hi('yamlAlias', s:simpleWhite, s:none, 'none')
-call <sid>hi('yamlAnchor', s:simpleWhite, s:none, 'none')
-call <sid>hi('yamlDocumentHeader', s:simpleGreen, s:none, 'none')
-call <sid>hi('yamlKey', s:simpleGold, s:none, 'none')
+call s:h("Special", s:blue, "", "")
+call s:h("SpecialChar", s:fg, "", "")
+call s:h("Tag", s:fg, "", "")
+call s:h("Delimiter", s:fg, "", "")
+call s:h("SpecialComment", s:fg, "", "")
+call s:h("Debug", s:fg, "", "")
+call s:h("Underlined", s:fg, "", "")
+call s:h("Ignore", s:fg, "", "")
+call s:h("Error", s:red, s:gutter_bg, "")
+call s:h("Todo", s:purple, "", "")
+" }
 
-" ALE
-call <sid>hi('ALEErrorSign', s:none, s:simpleBlack, 'none')
-call <sid>hi('ALEWarningSign', s:simpleGray2, s:simpleBlack, 'none')
+
+" Plugins {
+" GitGutter
+call s:h("GitGutterAdd", s:green, s:gutter_bg, "")
+call s:h("GitGutterDelete", s:red, s:gutter_bg, "")
+call s:h("GitGutterChange", s:yellow, s:gutter_bg, "")
+call s:h("GitGutterChangeDelete", s:red, s:gutter_bg, "")
+" Fugitive
+call s:h("diffAdded", s:green, "", "")
+call s:h("diffRemoved", s:red, "", "")
+" }
+
+
+" Git {
+call s:h("gitcommitComment", s:comment_fg, "", "")
+call s:h("gitcommitUnmerged", s:red, "", "")
+call s:h("gitcommitOnBranch", s:fg, "", "")
+call s:h("gitcommitBranch", s:purple, "", "")
+call s:h("gitcommitDiscardedType", s:red, "", "")
+call s:h("gitcommitSelectedType", s:green, "", "")
+call s:h("gitcommitHeader", s:fg, "", "")
+call s:h("gitcommitUntrackedFile", s:cyan, "", "")
+call s:h("gitcommitDiscardedFile", s:red, "", "")
+call s:h("gitcommitSelectedFile", s:green, "", "")
+call s:h("gitcommitUnmergedFile", s:yellow, "", "")
+call s:h("gitcommitFile", s:fg, "", "")
+hi link gitcommitNoBranch gitcommitBranch
+hi link gitcommitUntracked gitcommitComment
+hi link gitcommitDiscarded gitcommitComment
+hi link gitcommitSelected gitcommitComment
+hi link gitcommitDiscardedArrow gitcommitDiscardedFile
+hi link gitcommitSelectedArrow gitcommitSelectedFile
+hi link gitcommitUnmergedArrow gitcommitUnmergedFile
+" }
+
+" Fix colors in neovim terminal buffers {
+  if has('nvim')
+    let g:terminal_color_0 = s:black.gui
+    let g:terminal_color_1 = s:red.gui
+    let g:terminal_color_2 = s:green.gui
+    let g:terminal_color_3 = s:yellow.gui
+    let g:terminal_color_4 = s:blue.gui
+    let g:terminal_color_5 = s:purple.gui
+    let g:terminal_color_6 = s:cyan.gui
+    let g:terminal_color_7 = s:white.gui
+    let g:terminal_color_8 = s:black.gui
+    let g:terminal_color_9 = s:red.gui
+    let g:terminal_color_10 = s:green.gui
+    let g:terminal_color_11 = s:yellow.gui
+    let g:terminal_color_12 = s:blue.gui
+    let g:terminal_color_13 = s:purple.gui
+    let g:terminal_color_14 = s:cyan.gui
+    let g:terminal_color_15 = s:white.gui
+    let g:terminal_color_background = s:bg.gui
+    let g:terminal_color_foreground = s:fg.gui
+  endif
+  " }
 
 " Make things transparent
 hi Normal guibg=NONE ctermbg=NONE
