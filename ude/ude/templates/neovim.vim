@@ -32,6 +32,10 @@ Plug 'ianks/vim-tsx'
 {% if "python" in enabled_features %}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 {% endif %}
+
+{% if "csharp" in enabled_features %}
+Plug 'OmniSharp/omnisharp-vim'
+{% endif %}
 call plug#end()
 
 " ---------------
