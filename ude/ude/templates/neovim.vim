@@ -5,6 +5,7 @@ Plug 'plasticboy/vim-markdown'         " Markdown support
 Plug 'godlygeek/tabular'               " Required for markdown table formatting
 Plug 'tpope/vim-fugitive'              " GIT plugin
 Plug 'glench/vim-jinja2-syntax'
+Plug 'justinmk/vim-sneak'              " Jump around the file with s
 
 " Coc Language Server Protocol support
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
@@ -55,6 +56,7 @@ set cmdheight=2    " Better display for messages
 set expandtab      " Default to spaces
 set shiftwidth=2   " Default to 2 spaces for indentation
 let g:vim_markdown_folding_disabled = 1  " Disable markdown folding because of bug
+" let g:airline_powerline_fonts = 1        " Enables airline arrows
 
 
 {% if "fzf" in enabled_features %}
@@ -74,6 +76,7 @@ nnoremap <silent> <space>b :Buffers<cr>
 "au BufNewFile,BufRead *.tsx set filetype=typescriptreact
 
 " coc airline integration
+"
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 let g:airline#extensions#branch#enabled = 1
@@ -89,8 +92,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" nmap <silent> [c <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
