@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+import fileinput
+from typing import Dict, Iterator, Optional, Tuple
+
+def read_var(line: str, varsdict: Dict[str,str]) -> Dict[str,str]:
+    first_equal = line.find('=')
+    varname = line[0:first_equal]
+    value = line[first_equal+1:]
+    varsdict[varname] = value
+    return varsdict
+
+def process_line(line:str, varsdict: Dict[str,str]) -> str:
+    for varname, value in varsdict.items():
+        line = line.replace(f'${varname}', value)
+    return line
+
+def process_lines(lines: Iterator[str]) -> Iterator[Tuple[str, Optional[str]]]:
+    """
+    For each line, returns the original line plus a processed version, if any
+    """
+    is_reading_vars = True
+    varsdict : Dict[str,str] = {}
+    for line in lines:
+        if line.strip() == "":
+            is_reading_vars = False
+            yield(line, None)
+            continue
+        if is_reading_vars:
+            varsdict = read_var(line, varsdict)
+            yield(line, None)
+            continue
+        
+        yield (line, process_line(line, varsdict))
+
+def main() -> None:
+    result = ""
+    for (original_line, processed) in process_lines(fileinput.input()): 
+        print(original_line, end='')
+        if processed is not None:
+            result = result + processed
+    print("\n")
+    print(result)
+
+if __name__ == "__main__":
+    main()
+
+
