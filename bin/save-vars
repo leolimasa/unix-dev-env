@@ -1,0 +1,4 @@
+#!/bin/bash
+INPUT=$(cat <&0)
+echo "$INPUT" > /tmp/savedvars 
+echo -e "$INPUT"
