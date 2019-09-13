@@ -14,32 +14,19 @@ def process_line(line:str, varsdict: Dict[str,str]) -> str:
         line = line.replace(f'${varname}', value)
     return line
 
-def process_lines(lines: Iterator[str]) -> Iterator[Tuple[str, Optional[str]]]:
-    """
-    For each line, returns the original line plus a processed version, if any
-    """
-    is_reading_vars = True
-    varsdict : Dict[str,str] = {}
+def read_vars(lines: Iterator[str]) -> Dict[str, str]:
+    varsdict : Dict[str, str] = {};
     for line in lines:
-        if line.strip() == "":
-            is_reading_vars = False
-            yield(line, None)
-            continue
-        if is_reading_vars:
-            varsdict = read_var(line, varsdict)
-            yield(line, None)
-            continue
-        
-        yield (line, process_line(line, varsdict))
+        varsdict = read_var(line, varsdict)
+    return varsdict
 
 def main() -> None:
-    result = ""
-    for (original_line, processed) in process_lines(fileinput.input()): 
-        print(original_line, end='')
-        if processed is not None:
-            result = result + processed
-    print("\n")
-    print(result)
+    varsdict : Dict[str, str] = {}
+    with open("/tmp/savedvars", "r") as varsfile:
+        varsdict = read_vars(varsfile)
+
+    for line in fileinput.input():
+        print(process_line(line, varsdict), end='')
 
 if __name__ == "__main__":
     main()

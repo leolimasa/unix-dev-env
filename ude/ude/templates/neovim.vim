@@ -6,6 +6,7 @@ Plug 'godlygeek/tabular'               " Required for markdown table formatting
 Plug 'tpope/vim-fugitive'              " GIT plugin
 Plug 'glench/vim-jinja2-syntax'
 Plug 'justinmk/vim-sneak'              " Jump around the file with s
+Plug 'djoshea/vim-autoread'            " Ensure files are auto reloaded if they change on disk
 
 " Coc Language Server Protocol support
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
