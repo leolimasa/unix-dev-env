@@ -96,6 +96,8 @@ If UDE_FEATURES is not defined, it will install everything by default.
 | zr           | Reduce fold level                  |
 | zm           | Increase fold level                |
 | zM           | Folds everything                   |
+| zo           | Open fold                          |
+| zc           | Close fold                         |
 | gx           | Open URL under cursor              |
 | :TableFormat | Formats the table under the cursor |
 | :Toc         | Opens up the TOC for the markdown
@@ -122,7 +124,8 @@ All these commands will be installed in your path.
 | gitdiff        | Checks out two git branches and creates a diff between them                                                            |
 | history-find   | Fuzzy searches your command history                                                                                    |
 | tmux-newwindow | Creates a new tmux tab for a folder. E.g: `tmux-newwindow some/project/dir`. Needs to be ran inside tmux               |
-| filter.py      | Outputs everything from stdin to stdout. Useful for things like running psql through a pipe.
+| filter.py      | Outputs everything from stdin to stdout. Useful for things like running psql through a pipe.                           |
+| jsonpretty     | Prettifies a json from STDIN                                                                                           |
 
 
 ## Tips

@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import fileinput
+from typing import Dict, Iterator, Optional, Tuple
+
+def read_var(line: str, varsdict: Dict[str,str]) -> Dict[str,str]:
+    first_equal = line.find('=')
+    varname = line[0:first_equal]
+    value = line[first_equal+1:]
+    varsdict[varname] = value
+    return varsdict
+
+def process_line(line:str, varsdict: Dict[str,str]) -> str:
+    for varname, value in varsdict.items():
+        line = line.replace(f'${varname}', value)
+    return line
+
+def read_vars(lines: Iterator[str]) -> Dict[str, str]:
+    varsdict : Dict[str, str] = {};
+    for line in lines:
+        varsdict = read_var(line, varsdict)
+    return varsdict
+
+def main() -> None:
+    varsdict : Dict[str, str] = {}
+    with open("/tmp/savedvars", "r") as varsfile:
+        varsdict = read_vars(varsfile)
+
+    for line in fileinput.input():
+        print(process_line(line, varsdict), end='')
+
+if __name__ == "__main__":
+    main()
+
+
