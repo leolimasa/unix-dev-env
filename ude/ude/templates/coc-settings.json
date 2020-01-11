@@ -4,8 +4,19 @@
     "python.linting.mypyArgs": [
         "--strict"
     ],
+    "diagnostic.errorSign": "✖",
+    "diagnostic.warningSign": "⚠️ ",
+    "diagnostic.infoSign": "ℹ️ ",
+    "diagnostic.hintSign": ">>",
     "tsserver.enable": true,
     "tsserver.log": "verbose",
+    "yaml.format.enable": true,
+    "yaml.validate": true,
+    "yaml.completion": true,
+    "yaml.schemas": {
+        "http://json.schemastore.org/ansible-stable-2.7": "/*tagged.yml",
+        "http://json.schemastore.org/ansible-stable-2.7": "/*main.yml"
+    },
     "languageserver": {
         "golang": {
             "command": "gopls",
