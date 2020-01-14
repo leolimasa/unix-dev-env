@@ -56,6 +56,7 @@ set hidden
 set cmdheight=2    " Better display for messages
 set expandtab      " Default to spaces
 set shiftwidth=2   " Default to 2 spaces for indentation
+set mouse=a        " Enable mouse support for everything
 let g:vim_markdown_folding_disabled = 1  " Disable markdown folding because of bug
 " let g:airline_powerline_fonts = 1        " Enables airline arrows
 

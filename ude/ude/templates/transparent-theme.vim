@@ -30,7 +30,8 @@ let s:none        = {'gui': 'NONE', 'cterm': 'NONE'}
 let s:fg          = s:white
 let s:bg          = s:black
 
-let s:comment_fg  = { "gui": "#5c6370", "cterm": "241" }
+" let s:comment_fg  = { "gui": "#5c6370", "cterm": "241" }
+let s:comment_fg  = { "gui": "#9499a6", "cterm": "241" }
 let s:gutter_bg   = { "gui": "#282c34", "cterm": "236" }
 let s:gutter_fg   = { "gui": "#919baa", "cterm": "247" }
 
@@ -85,7 +86,7 @@ call s:h("MoreMsg", s:fg, "", "")
 call s:h("WarningMsg", s:red, "", "")
 call s:h("Question", s:purple, "", "")
 
-call s:h("Pmenu", s:bg, s:fg, "")
+call s:h("Pmenu", s:fg, s:bg, "")
 call s:h("PmenuSel", s:fg, s:blue, "")
 call s:h("PmenuSbar", "", s:selection, "")
 call s:h("PmenuThumb", "", s:fg, "")
