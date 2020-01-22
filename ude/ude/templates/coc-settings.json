@@ -2,7 +2,8 @@
     "python.jediEnabled": false,
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": [
-        "--strict"
+        "--strict",
+        "--ignore-missing-imports"
     ],
     "diagnostic.errorSign": "✖",
     "diagnostic.warningSign": "⚠️ ",

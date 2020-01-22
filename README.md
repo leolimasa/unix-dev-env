@@ -66,6 +66,8 @@ If UDE_FEATURES is not defined, it will install everything by default.
 | space vP           | Open home dir file in a new vertical split |
 | space vb           | Open buffer in a vertical split            |
 | space vo           | Open file explorer in a vertical split     |
+| space ve           | Edit file in a vertical split              |
+
 
 
 ### Code
