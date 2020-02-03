@@ -58,7 +58,7 @@ set expandtab      " Default to spaces
 set shiftwidth=2   " Default to 2 spaces for indentation
 set mouse=a        " Enable mouse support for everything
 let g:vim_markdown_folding_disabled = 1  " Disable markdown folding because of bug
-" let g:airline_powerline_fonts = 1        " Enables airline arrows
+let g:airline_powerline_fonts = 1        " Enables airline arrows
 
 
 {% if "fzf" in enabled_features %}
@@ -165,6 +165,7 @@ nmap <space>b  :<C-u>Buffers<cr>
 nmap <space>vp  <C-w>v<C-l><space>p 
 nmap <space>vP  <C-w>v<C-l><space>P 
 nmap <space>vb  <C-w>v<C-l><space>b
+nmap <space>ve  <C-w>v<C-l><space>:e<space>
 
 " Finds text in files
 nmap <space>sp  :<C-u>Ag<cr>
