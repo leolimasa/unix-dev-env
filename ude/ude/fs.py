@@ -9,11 +9,13 @@ import jinja2
 from .model import UdeEnvironment
 
 
-def run_cmd(command: List[str]) -> str:
+def run_cmd(command: List[str], env={}) -> str:
     """
     Runs an OS command
     """
-    return subprocess.check_output(command).decode('UTF-8')
+    os_env = os.environ
+    final_env = {**os_env, **env}
+    return subprocess.check_output(command, env=final_env).decode('UTF-8')
 
 
 def render_template(file_path: str, env: UdeEnvironment) -> str:
