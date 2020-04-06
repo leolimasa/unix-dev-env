@@ -1,0 +1,7 @@
+name: fzf
+injections:
+  nvim_plug:
+    - Plug 'junegunn/fzf.vim'
+commands:
+  pre-template:
+    - sh $LAYER_DIR/install_fzf.sh

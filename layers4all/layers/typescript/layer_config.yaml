@@ -1,0 +1,9 @@
+name: Typescript
+injections:
+  nvim_plug:
+    - "Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}"
+    - Plug 'leafgarland/typescript-vim'
+    - Plug 'ianks/vim-tsx'
+commands:
+  pre-template:
+    - npm install -g javascript-typescript-langserver

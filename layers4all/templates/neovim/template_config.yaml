@@ -1,0 +1,6 @@
+name: Leo's Neovim Config
+destination: ~/.config/nvim/init2.vim
+commands:
+  post-save:
+    - nvim +PlugInstall +UpdateRemotePlugins +qall
+    - nvim +CocInstall coc-json +CocInstall coc-html +CocInstall coc-css +CocInstall coc-highlight +CocInstall coc-yaml +qall
