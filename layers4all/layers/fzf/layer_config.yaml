@@ -1,7 +1,16 @@
 name: fzf
 injections:
   nvim_plug:
+    - Plug 'junegunn/fzf'
     - Plug 'junegunn/fzf.vim'
+  nvim_config:
+    - '" ---------------'
+    - '"  FZF'
+    - '" ---------------'
+    - nnoremap <silent> <space>p :FZF<cr>
+    - nnoremap <silent> <space>P :FZF ~<cr>
+    - nnoremap <silent> <space>b :Buffers<cr>
+
 commands:
   pre-template:
     - sh $LAYER_DIR/install_fzf.sh
