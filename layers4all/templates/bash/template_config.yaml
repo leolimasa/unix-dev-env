@@ -1,0 +1,4 @@
+name: Bashrc config
+templates:
+  - file: bashrc
+    destination: ~/.config/ude/bashrc

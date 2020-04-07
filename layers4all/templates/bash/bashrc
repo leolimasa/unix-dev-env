@@ -1,0 +1,21 @@
+# Source from .bash_profile by doing
+#
+# source /path/to/this/file
+
+# Correct colors
+if ! [ -z "$TMUX" ]
+then
+	export TERM=screen-256color
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		alias ls='ls --color=auto'
+	fi
+else
+	export TERM=xterm-256color
+fi
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+export PATH=$PATH:~/Projects/Sandbox/unix-dev-env/bin
+{% for i in injections.bash %}{{ i }}
+{% endfor %}

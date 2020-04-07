@@ -1,0 +1,17 @@
+name: nim
+injections:
+  bash:
+    - export PATH=~/.nimble/bin:$PATH
+  nvim_plug:
+    - Plug 'alaviss/nim.nvim'
+  coc_settings_languageserver:
+    - |
+      "nim": {
+                "command": "~/.nimble/pkgs/nimlsp-0.2.1/nimlsp",
+                "filetypes": ["nim"]
+             }
+commands:
+  pre_template:
+    - sh $LAYER_DIR/install_nim.sh
+  post_template:
+    - ~/.nimble/bin/nimble install nimlsp

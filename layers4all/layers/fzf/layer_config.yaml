@@ -10,7 +10,8 @@ injections:
     - nnoremap <silent> <space>p :FZF<cr>
     - nnoremap <silent> <space>P :FZF ~<cr>
     - nnoremap <silent> <space>b :Buffers<cr>
-
+    - '" Find text in current buffer'
+    - nmap <space>/ :<C-u>BLines<cr>
 commands:
   pre-template:
     - sh $LAYER_DIR/install_fzf.sh
