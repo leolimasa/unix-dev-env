@@ -1,0 +1,5 @@
+name: Terminal-wide transparent theme
+injections:
+  nvim_config:
+    - colorscheme transparent-theme
+    - let g:airline_theme='transparentairlinetheme'

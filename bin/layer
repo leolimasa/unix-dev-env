@@ -1,0 +1,5 @@
+#!/bin/bash
+cd ~/Projects/Sandbox/layers4all
+export L4A_LAYERS_DIR=~/Projects/Sandbox/unix-dev-env/layers4all/layers
+export L4A_TEMPLATES_DIR=~/Projects/Sandbox/unix-dev-env/layers4all/templates
+pipenv run python -m layers4all.bin "$@"

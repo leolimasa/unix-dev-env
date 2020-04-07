@@ -1,0 +1,5 @@
+name: Leo's TMUX Config
+destination: ~/.config/nvim/init2.vim
+templates:
+  - file: tmux.conf
+    destination: ~/tmux.conf

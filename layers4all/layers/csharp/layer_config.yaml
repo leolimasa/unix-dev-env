@@ -1,0 +1,4 @@
+name: csharp
+injections:
+  nvim_plug:
+    - Plug 'OmniSharp/omnisharp-vim'

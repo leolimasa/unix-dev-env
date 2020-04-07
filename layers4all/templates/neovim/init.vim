@@ -21,8 +21,8 @@ Plug 'crusoexia/vim-monokai'
 Plug 'kaicataldo/material.vim'
 Plug 'vim-airline/vim-airline'
 
-{% for plugin in injections.nvim_plug %}
-{{ plugin }}
+" Injections
+{% for plugin in injections.nvim_plug %}{{ plugin }}
 {% endfor %}
 call plug#end()
 
@@ -152,7 +152,7 @@ nmap <space>o  :<C-u>Explore<cr>
 " Open file explorer in vertical split
 nmap <space>vo  <C-w>v<C-l>:<C-u>Explore<cr>
 
-
+" Injection configs
 {% for cfg in injections.nvim_config %}
 {{ cfg }}
 {% endfor %}

@@ -1,5 +1,14 @@
 name: Leo's Neovim Config
-destination: ~/.config/nvim/init2.vim
+templates:
+  - file: init.vim
+    destination: ~/.config/nvim/init.vim
+  - file: coc-settings.json
+    destination: ~/.config/nvim/coc-settings.json
+  - file: transparent-theme.vim
+    destination: ~/.config/nvim/colors/transparent-theme.vim
+  - file: transparentairlinetheme.vim
+    destination: ~/.config/nvim/autoload/airline/themes/transparentairlinetheme.vim
+
 commands:
   post-save:
     - nvim +PlugInstall +UpdateRemotePlugins +qall
