@@ -176,6 +176,9 @@ nmap <space>o  :<C-u>Explore<cr>
 " Open file explorer in vertical split
 nmap <space>vo  <C-w>v<C-l>:<C-u>Explore<cr>
 
+" Find text in current buffer
+nmap <space>/ :<C-u>BLines<cr>
+
 
 {% if "transparent_theme" in enabled_features %}
 colorscheme transparent-theme
