@@ -2,27 +2,39 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-# Install python so we can run the script
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	if ! [ -x "$(command -v python3.7)" ]; then
-		apt install python3.7
-		apt install python3-setuptools
-		apt install python3.7-venv
-		apt install python3-pip
-		pip3 install wheel
-	fi
-#elif [[ "$OSTYPE" == "darwin"* ]]; then
-# TODO install python3.2 on macos if it doesn't exist
+	apt-get -y install python3.7
+	apt-get -y install python3-pip
+	apt-get -y install fish
+	apt-get -y install neovim
+	apt-get -y install git
+	apt-get -y install curl
+	apt-get -y install tmux
+	pip3 install pipenv
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	brew install tmux
+	brew install fish
+	brew install neovim
+	brew install python3
+	brew install git
+	pip3 install pipenv
 fi
 
-# Node is required for Coc, so we always check for it.
+# Install node (coc relies on it)
 if ! [ -x "$(command -v node)" ]; then
-	source $DIR/ude/ude/scripts/install_node.sh
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+	. $HOME/.nvm/nvm.sh  # This loads NVM
+	nvm install stable
+	nvm use node
 fi
 
-cd $DIR/ude
-rm -rf venv
-python3.7 -m venv venv
-venv/bin/python3.7 setup.py develop
-venv/bin/python3.7 -m ude.install
-echo "Installation done. If this is the first time you install, quit and reenter the terminal."
+mkdir -p ~/Projects/Sandbox
+
+# Clone layers4all
+cd ~/Projects/Sandbox
+git clone https://github.com/leolimasa/layers4all.git
+
+# TODO Set fish as default shell 
+
+
+# TODO apply l4a standard configs

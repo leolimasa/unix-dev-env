@@ -11,7 +11,7 @@ injections:
                 "filetypes": ["nim"]
              }
 commands:
-  pre_template:
+  pre-template:
     - sh $LAYER_DIR/install_nim.sh
-  post_template:
+  post-template:
     - ~/.nimble/bin/nimble install nimlsp

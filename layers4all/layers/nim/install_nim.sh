@@ -1,5 +1,8 @@
 #!/bin/bash
 nimloc=$(command -v nimble)
+if [ -x "~/.nimble/bin/nimble" ]; then
+  exit
+fi
 if [ -x "$nimloc" ]; then
   exit
 fi

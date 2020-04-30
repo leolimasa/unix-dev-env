@@ -12,7 +12,7 @@ Plug 'djoshea/vim-autoread'            " Ensure files are auto reloaded if they 
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " LSP support
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'} 
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 
@@ -151,6 +151,15 @@ nmap <space>o  :<C-u>Explore<cr>
 
 " Open file explorer in vertical split
 nmap <space>vo  <C-w>v<C-l>:<C-u>Explore<cr>
+
+" Close brackets and other things automatically
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " Injection configs
 {% for cfg in injections.nvim_config %}

@@ -1,6 +1,6 @@
 name: Rust
 commands:
-  pre_template:
+  pre-template:
     - sh $LAYER_DIR/install_rust.sh
-  post_template:
+  post-template:
     - nvim "+CocInstall coc-rls" +qall

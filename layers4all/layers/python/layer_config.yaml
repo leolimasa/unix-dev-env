@@ -12,7 +12,7 @@ injections:
     -  "Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}"
 
 commands:
-  pre_template:
+  pre-template:
     - pip3 install python-language-server[all]
     - pip3 install pynvim
 

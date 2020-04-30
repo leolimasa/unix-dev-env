@@ -2,3 +2,6 @@ name: csharp
 injections:
   nvim_plug:
     - Plug 'OmniSharp/omnisharp-vim'
+commands:
+  post-template:
+    - nvim "+CocInstall coc-omnisharp" +qall
