@@ -12,6 +12,11 @@ injections:
     - nnoremap <silent> <space>b :Buffers<cr>
     - '" Find text in current buffer'
     - nmap <space>/ :<C-u>BLines<cr>
+  bash:
+    - "export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g \"\"'"
+  fish:
+    - "set -x FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g \"\"'"
+  
 commands:
   pre-template:
     - sh $LAYER_DIR/install_fzf.sh
