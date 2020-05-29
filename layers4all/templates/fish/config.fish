@@ -7,6 +7,13 @@ end
 function fish_right_prompt
   #intentionally left blank
 end
+
+function hsearch
+  set cmdtorun (history | fzf)
+  eval $cmdtorun
+end
+
 {% for i in injections.fish %}{{ i }}
 {% endfor %}
 source ~/.config/fish/local_config.fish
+

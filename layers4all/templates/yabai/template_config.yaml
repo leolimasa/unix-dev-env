@@ -1,0 +1,6 @@
+name: Yabai window manager with skhdc bindings
+templates:
+  - file: yabairc
+    destination: ~/.config/yabai/yabairc
+  - file: skhdrc
+    destination: ~/.config/skhd/skhdrc
